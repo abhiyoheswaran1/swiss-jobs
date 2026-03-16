@@ -394,6 +394,16 @@ const I18N = {
     }
 };
 
+const MAJOR_GROUPS_DE = {
+    'Armed Forces': 'Streitkräfte', 'Managers': 'Führungskräfte',
+    'Professionals': 'Akademische Berufe', 'Technicians and Associate Professionals': 'Techniker und gleichrangige Berufe',
+    'Clerical Support Workers': 'Bürokräfte', 'Service and Sales Workers': 'Dienstleistungsberufe und Verkäufer',
+    'Skilled Agricultural, Forestry and Fishery Workers': 'Fachkräfte Landwirtschaft/Fischerei',
+    'Craft and Related Trades Workers': 'Handwerks- und verwandte Berufe',
+    'Plant and Machine Operators and Assemblers': 'Anlagen-/Maschinenbediener',
+    'Elementary Occupations': 'Hilfsarbeitskräfte'
+};
+
 function t(key) { return I18N[LANG][key] || I18N.en[key] || key; }
 function getTitle(item) { return LANG === 'de' ? (item.title_de || item.title) : item.title; }
 function getCategory(item) { return LANG === 'de' ? (item.category_de || item.category) : item.category; }
@@ -521,18 +531,47 @@ function render() {
     }));
 
     squarify(catItems, 0, 0, cw, ch);
+
+    // Layout children inside each category with padding for visual grouping
+    const catPad = 3;        // padding inside category rect
+    const catLabelH = 16;    // space reserved for category header label
     RECTS = [];
+    const CAT_RECTS = [];    // store category rects for drawing labels
     for (const cat of catItems) {
         if (!cat.rect) continue;
         const {x,y,w,h} = cat.rect;
-        const sub = cat.items.map(d => ({...d, area: d.jobs/catJobs[cat.category]*w*h}));
-        squarify(sub, x, y, w, h);
+        // Inset for category padding + label
+        const ix = x + catPad, iy = y + catPad + catLabelH;
+        const iw = w - catPad*2, ih = h - catPad*2 - catLabelH;
+        if (iw < 4 || ih < 4) continue;
+        CAT_RECTS.push({category: cat.category, x, y, w, h});
+        const sub = cat.items.map(d => ({...d, area: d.jobs/catJobs[cat.category]*iw*ih}));
+        squarify(sub, ix, iy, iw, ih);
         for (const s of sub) if (s.rect) RECTS.push(s);
+    }
+
+    // Draw category backgrounds & labels
+    for (const cr of CAT_RECTS) {
+        // Subtle border around category group
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(cr.x + 1, cr.y + 1, cr.w - 2, cr.h - 2);
+
+        // Category label
+        const catLabel = LANG === 'de' ? (MAJOR_GROUPS_DE[cr.category] || cr.category) : cr.category;
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(cr.x + catPad, cr.y + catPad, cr.w - catPad*2, catLabelH);
+        ctx.clip();
+        ctx.font = '600 11px -apple-system, system-ui, sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.45)';
+        ctx.textBaseline = 'top';
+        ctx.fillText(catLabel.toUpperCase(), cr.x + catPad + 4, cr.y + catPad + 2);
+        ctx.restore();
     }
 
     // Draw tiles
     const gap = 1.5;
-    const pad = 0.75;
     for (const item of RECTS) {
         const {x,y,w,h} = item.rect;
         const isH = HOVERED && HOVERED.slug === item.slug;

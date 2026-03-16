@@ -1,0 +1,1082 @@
+[
+  {
+    "isco_code": "011",
+    "isco_2digit": "01",
+    "major_group": "0",
+    "title_de": "Offiziere in regulären Streitkräften",
+    "employment_thousands": 1.3,
+    "employment": 1306
+  },
+  {
+    "isco_code": "021",
+    "isco_2digit": "02",
+    "major_group": "0",
+    "title_de": "Unteroffiziere in regulären Streitkräften",
+    "employment_thousands": 1.5,
+    "employment": 1519
+  },
+  {
+    "isco_code": "031",
+    "isco_2digit": "03",
+    "major_group": "0",
+    "title_de": "Angehörige der regulären Streitkräfte in sonstigen Rängen",
+    "employment_thousands": 1.7,
+    "employment": 1651
+  },
+  {
+    "isco_code": "100",
+    "isco_2digit": "10",
+    "major_group": "1",
+    "title_de": "Führungskräfte, onA",
+    "employment_thousands": 18.3,
+    "employment": 18346
+  },
+  {
+    "isco_code": "111",
+    "isco_2digit": "11",
+    "major_group": "1",
+    "title_de": "Angehörige gesetzgebender Körperschaften und leitende Verwaltungsbedienstete",
+    "employment_thousands": 19.6,
+    "employment": 19559
+  },
+  {
+    "isco_code": "112",
+    "isco_2digit": "11",
+    "major_group": "1",
+    "title_de": "Geschäftsführer und Vorstände",
+    "employment_thousands": 123.2,
+    "employment": 123233
+  },
+  {
+    "isco_code": "121",
+    "isco_2digit": "12",
+    "major_group": "1",
+    "title_de": "Führungskräfte in der betrieblichen Administration und in unternehmensbezogenen Dienstleistungen",
+    "employment_thousands": 74.0,
+    "employment": 74029
+  },
+  {
+    "isco_code": "122",
+    "isco_2digit": "12",
+    "major_group": "1",
+    "title_de": "Führungskräfte in Vertrieb, Marketing und Entwicklung",
+    "employment_thousands": 61.4,
+    "employment": 61364
+  },
+  {
+    "isco_code": "130",
+    "isco_2digit": "13",
+    "major_group": "1",
+    "title_de": "Führungskräfte in der Produktion und bei spezialisierten Dienstleistungen, onA",
+    "employment_thousands": 0.6,
+    "employment": 641
+  },
+  {
+    "isco_code": "131",
+    "isco_2digit": "13",
+    "major_group": "1",
+    "title_de": "Führungskräfte in der Produktion in Land- und Forstwirtschaft und Fischerei",
+    "employment_thousands": 0.7,
+    "employment": 654
+  },
+  {
+    "isco_code": "132",
+    "isco_2digit": "13",
+    "major_group": "1",
+    "title_de": "Führungskräfte in der Produktion von Waren, im Bergbau und im Bau sowie in der Logistik",
+    "employment_thousands": 60.9,
+    "employment": 60932
+  },
+  {
+    "isco_code": "133",
+    "isco_2digit": "13",
+    "major_group": "1",
+    "title_de": "Führungskräfte in der Erbringung von Dienstleistungen im Bereich Informations- und Kommunikationstechnologie",
+    "employment_thousands": 10.6,
+    "employment": 10641
+  },
+  {
+    "isco_code": "134",
+    "isco_2digit": "13",
+    "major_group": "1",
+    "title_de": "Führungskräfte in der Erbringung von spezialisierten Dienstleistungen",
+    "employment_thousands": 37.6,
+    "employment": 37634
+  },
+  {
+    "isco_code": "141",
+    "isco_2digit": "14",
+    "major_group": "1",
+    "title_de": "Führungskräfte in Hotels und Restaurants",
+    "employment_thousands": 26.1,
+    "employment": 26058
+  },
+  {
+    "isco_code": "142",
+    "isco_2digit": "14",
+    "major_group": "1",
+    "title_de": "Führungskräfte in Gross- und Einzelhandel",
+    "employment_thousands": 3.4,
+    "employment": 3424
+  },
+  {
+    "isco_code": "143",
+    "isco_2digit": "14",
+    "major_group": "1",
+    "title_de": "Führungskräfte in der Erbringung sonstiger Dienstleistungen",
+    "employment_thousands": 5.4,
+    "employment": 5422
+  },
+  {
+    "isco_code": "200",
+    "isco_2digit": "20",
+    "major_group": "2",
+    "title_de": "Intellektuelle und wissenschaftliche Berufe, onA",
+    "employment_thousands": 38.1,
+    "employment": 38114
+  },
+  {
+    "isco_code": "210",
+    "isco_2digit": "21",
+    "major_group": "2",
+    "title_de": "Naturwissenschaftler, Mathematiker und Ingenieure, onA",
+    "employment_thousands": 1.5,
+    "employment": 1531
+  },
+  {
+    "isco_code": "211",
+    "isco_2digit": "21",
+    "major_group": "2",
+    "title_de": "Physiker, Chemiker, Geologen und verwandte Berufe",
+    "employment_thousands": 7.2,
+    "employment": 7202
+  },
+  {
+    "isco_code": "212",
+    "isco_2digit": "21",
+    "major_group": "2",
+    "title_de": "Mathematiker, Aktuare und Statistiker",
+    "employment_thousands": 6.4,
+    "employment": 6392
+  },
+  {
+    "isco_code": "213",
+    "isco_2digit": "21",
+    "major_group": "2",
+    "title_de": "Biowissenschaftler",
+    "employment_thousands": 12.3,
+    "employment": 12338
+  },
+  {
+    "isco_code": "214",
+    "isco_2digit": "21",
+    "major_group": "2",
+    "title_de": "Ingenieurwissenschaftler (ohne Elektrotechnik, Elektronik und Telekommunikation)",
+    "employment_thousands": 46.1,
+    "employment": 46111
+  },
+  {
+    "isco_code": "215",
+    "isco_2digit": "21",
+    "major_group": "2",
+    "title_de": "Ingenieure in den Bereichen Elektrotechnik, Elektronik und Telekommunikationstechnik",
+    "employment_thousands": 10.1,
+    "employment": 10091
+  },
+  {
+    "isco_code": "216",
+    "isco_2digit": "21",
+    "major_group": "2",
+    "title_de": "Architekten, Raum-, Stadt- und Verkehrsplaner, Vermessungsingenieure und Designer",
+    "employment_thousands": 51.4,
+    "employment": 51417
+  },
+  {
+    "isco_code": "221",
+    "isco_2digit": "22",
+    "major_group": "2",
+    "title_de": "Ärzte",
+    "employment_thousands": 48.8,
+    "employment": 48766
+  },
+  {
+    "isco_code": "222",
+    "isco_2digit": "22",
+    "major_group": "2",
+    "title_de": "Pflegedienstleitern, Pflegefachkräfte und Geburtshilfespezialisten",
+    "employment_thousands": 95.0,
+    "employment": 94966
+  },
+  {
+    "isco_code": "223",
+    "isco_2digit": "22",
+    "major_group": "2",
+    "title_de": "Spezialisten der traditionellen und komplementären Medizin",
+    "employment_thousands": 7.9,
+    "employment": 7919
+  },
+  {
+    "isco_code": "225",
+    "isco_2digit": "22",
+    "major_group": "2",
+    "title_de": "Tierärzte",
+    "employment_thousands": 3.3,
+    "employment": 3257
+  },
+  {
+    "isco_code": "226",
+    "isco_2digit": "22",
+    "major_group": "2",
+    "title_de": "Sonstige Spezialisten in Gesundheitsberufen",
+    "employment_thousands": 50.6,
+    "employment": 50554
+  },
+  {
+    "isco_code": "230",
+    "isco_2digit": "23",
+    "major_group": "2",
+    "title_de": "Lehrkräfte, onA",
+    "employment_thousands": 7.2,
+    "employment": 7184
+  },
+  {
+    "isco_code": "231",
+    "isco_2digit": "23",
+    "major_group": "2",
+    "title_de": "Universitäts- und Hochschullehrer",
+    "employment_thousands": 15.8,
+    "employment": 15843
+  },
+  {
+    "isco_code": "232",
+    "isco_2digit": "23",
+    "major_group": "2",
+    "title_de": "Lehrkräfte im Bereich Berufsbildung",
+    "employment_thousands": 12.7,
+    "employment": 12654
+  },
+  {
+    "isco_code": "233",
+    "isco_2digit": "23",
+    "major_group": "2",
+    "title_de": "Lehrkräfte im Sekundarbereich",
+    "employment_thousands": 43.4,
+    "employment": 43420
+  },
+  {
+    "isco_code": "234",
+    "isco_2digit": "23",
+    "major_group": "2",
+    "title_de": "Lehrkräfte im Primar- und Vorschulbereich",
+    "employment_thousands": 84.5,
+    "employment": 84525
+  },
+  {
+    "isco_code": "235",
+    "isco_2digit": "23",
+    "major_group": "2",
+    "title_de": "Sonstige Lehrkräfte",
+    "employment_thousands": 45.5,
+    "employment": 45527
+  },
+  {
+    "isco_code": "240",
+    "isco_2digit": "24",
+    "major_group": "2",
+    "title_de": "Betriebswirte und vergleichbare Spezialisten, onA",
+    "employment_thousands": 1.6,
+    "employment": 1615
+  },
+  {
+    "isco_code": "241",
+    "isco_2digit": "24",
+    "major_group": "2",
+    "title_de": "Spezialisten im Bereich Finanzen",
+    "employment_thousands": 59.5,
+    "employment": 59549
+  },
+  {
+    "isco_code": "242",
+    "isco_2digit": "24",
+    "major_group": "2",
+    "title_de": "Spezialisten der betrieblichen Verwaltung",
+    "employment_thousands": 49.6,
+    "employment": 49629
+  },
+  {
+    "isco_code": "243",
+    "isco_2digit": "24",
+    "major_group": "2",
+    "title_de": "Spezialisten in Vertrieb, Marketing und Öffentlichkeitsarbeit",
+    "employment_thousands": 56.9,
+    "employment": 56865
+  },
+  {
+    "isco_code": "250",
+    "isco_2digit": "25",
+    "major_group": "2",
+    "title_de": "Spezialisten in der Informations- und Kommunikationstechnologie, onA",
+    "employment_thousands": 16.9,
+    "employment": 16925
+  },
+  {
+    "isco_code": "251",
+    "isco_2digit": "25",
+    "major_group": "2",
+    "title_de": "Entwickler und Analytiker von Software und Anwendungen",
+    "employment_thousands": 104.6,
+    "employment": 104596
+  },
+  {
+    "isco_code": "252",
+    "isco_2digit": "25",
+    "major_group": "2",
+    "title_de": "Fachkräfte für Datenbanken und Netzwerke",
+    "employment_thousands": 16.7,
+    "employment": 16685
+  },
+  {
+    "isco_code": "261",
+    "isco_2digit": "26",
+    "major_group": "2",
+    "title_de": "Juristen",
+    "employment_thousands": 34.6,
+    "employment": 34584
+  },
+  {
+    "isco_code": "262",
+    "isco_2digit": "26",
+    "major_group": "2",
+    "title_de": "Archiv-, Bibliotheks- und Museumswissenschaftler",
+    "employment_thousands": 7.1,
+    "employment": 7109
+  },
+  {
+    "isco_code": "263",
+    "isco_2digit": "26",
+    "major_group": "2",
+    "title_de": "Sozialwissenschaftler, Geistliche und Seelsorger",
+    "employment_thousands": 41.8,
+    "employment": 41779
+  },
+  {
+    "isco_code": "264",
+    "isco_2digit": "26",
+    "major_group": "2",
+    "title_de": "Autoren, Journalisten und Linguisten",
+    "employment_thousands": 20.9,
+    "employment": 20905
+  },
+  {
+    "isco_code": "265",
+    "isco_2digit": "26",
+    "major_group": "2",
+    "title_de": "Bildende und darstellende Künstler",
+    "employment_thousands": 21.2,
+    "employment": 21240
+  },
+  {
+    "isco_code": "300",
+    "isco_2digit": "30",
+    "major_group": "3",
+    "title_de": "Techniker und gleichrangige nichttechnische Berufe, onA",
+    "employment_thousands": 61.4,
+    "employment": 61389
+  },
+  {
+    "isco_code": "310",
+    "isco_2digit": "31",
+    "major_group": "3",
+    "title_de": "Ingenieurtechnische und vergleichbare Fachkräfte, onA",
+    "employment_thousands": 9.2,
+    "employment": 9236
+  },
+  {
+    "isco_code": "311",
+    "isco_2digit": "31",
+    "major_group": "3",
+    "title_de": "Material- und ingenieurtechnische Fachkräfte",
+    "employment_thousands": 108.7,
+    "employment": 108656
+  },
+  {
+    "isco_code": "312",
+    "isco_2digit": "31",
+    "major_group": "3",
+    "title_de": "Produktionsleiter im Bergbau, bei der Herstellung von Waren, Polier und Vorarbeiter im Bau",
+    "employment_thousands": 47.6,
+    "employment": 47622
+  },
+  {
+    "isco_code": "313",
+    "isco_2digit": "31",
+    "major_group": "3",
+    "title_de": "Techniker in der Prozesssteuerung",
+    "employment_thousands": 3.3,
+    "employment": 3252
+  },
+  {
+    "isco_code": "314",
+    "isco_2digit": "31",
+    "major_group": "3",
+    "title_de": "Biotechniker und verwandte technische Berufe",
+    "employment_thousands": 4.4,
+    "employment": 4392
+  },
+  {
+    "isco_code": "315",
+    "isco_2digit": "31",
+    "major_group": "3",
+    "title_de": "Schiffsführer, Flugzeugpiloten und verwandte Berufe",
+    "employment_thousands": 7.3,
+    "employment": 7338
+  },
+  {
+    "isco_code": "321",
+    "isco_2digit": "32",
+    "major_group": "3",
+    "title_de": "Medizinische und pharmazeutische Fachberufe",
+    "employment_thousands": 31.4,
+    "employment": 31415
+  },
+  {
+    "isco_code": "322",
+    "isco_2digit": "32",
+    "major_group": "3",
+    "title_de": "Fachkräfte Geburtshilfe, Gesundheit und Pflege (mittlere Stufe)",
+    "employment_thousands": 31.9,
+    "employment": 31870
+  },
+  {
+    "isco_code": "323",
+    "isco_2digit": "32",
+    "major_group": "3",
+    "title_de": "Fachkräfte in traditioneller und komplementärer Medizin",
+    "employment_thousands": 0.9,
+    "employment": 932
+  },
+  {
+    "isco_code": "324",
+    "isco_2digit": "32",
+    "major_group": "3",
+    "title_de": "Veterinärmedizinische Fachkräfte und Assistenten",
+    "employment_thousands": 3.0,
+    "employment": 2951
+  },
+  {
+    "isco_code": "325",
+    "isco_2digit": "32",
+    "major_group": "3",
+    "title_de": "Sonstige Assistenzberufe im Gesundheitswesen",
+    "employment_thousands": 67.3,
+    "employment": 67263
+  },
+  {
+    "isco_code": "330",
+    "isco_2digit": "33",
+    "major_group": "3",
+    "title_de": "Betriebswirtschaftliche und kaufmännische Fachkräfte und Verwaltungsfachkräfte, onA",
+    "employment_thousands": 1.7,
+    "employment": 1659
+  },
+  {
+    "isco_code": "331",
+    "isco_2digit": "33",
+    "major_group": "3",
+    "title_de": "Fachkräfte im Bereich Finanzen und mathematische Verfahren",
+    "employment_thousands": 48.7,
+    "employment": 48704
+  },
+  {
+    "isco_code": "332",
+    "isco_2digit": "33",
+    "major_group": "3",
+    "title_de": "Verkaufsfachkräfte, Einkäufer und Handelsmakler",
+    "employment_thousands": 58.4,
+    "employment": 58373
+  },
+  {
+    "isco_code": "333",
+    "isco_2digit": "33",
+    "major_group": "3",
+    "title_de": "Fachkräfte für unternehmensbezogene Dienstleistungen",
+    "employment_thousands": 33.1,
+    "employment": 33138
+  },
+  {
+    "isco_code": "334",
+    "isco_2digit": "33",
+    "major_group": "3",
+    "title_de": "Sekretariatsfachkräfte",
+    "employment_thousands": 61.7,
+    "employment": 61664
+  },
+  {
+    "isco_code": "335",
+    "isco_2digit": "33",
+    "major_group": "3",
+    "title_de": "Fachkräfte in der öffentlichen Verwaltung",
+    "employment_thousands": 19.2,
+    "employment": 19168
+  },
+  {
+    "isco_code": "341",
+    "isco_2digit": "34",
+    "major_group": "3",
+    "title_de": "Juristische, soziale und religiöse Berufe",
+    "employment_thousands": 55.8,
+    "employment": 55823
+  },
+  {
+    "isco_code": "342",
+    "isco_2digit": "34",
+    "major_group": "3",
+    "title_de": "Fachkräfte im Bereich Sport und Fitness",
+    "employment_thousands": 26.3,
+    "employment": 26337
+  },
+  {
+    "isco_code": "343",
+    "isco_2digit": "34",
+    "major_group": "3",
+    "title_de": "Fachkräfte in Gestaltung und Kultur sowie Küchenchefs",
+    "employment_thousands": 25.2,
+    "employment": 25181
+  },
+  {
+    "isco_code": "351",
+    "isco_2digit": "35",
+    "major_group": "3",
+    "title_de": "Techniker für den Betrieb von Informations- und Kommunikationstechnologie und für die Anwenderbetreuung",
+    "employment_thousands": 22.3,
+    "employment": 22325
+  },
+  {
+    "isco_code": "352",
+    "isco_2digit": "35",
+    "major_group": "3",
+    "title_de": "Telekommunikations- und Rundfunktechniker",
+    "employment_thousands": 6.6,
+    "employment": 6605
+  },
+  {
+    "isco_code": "411",
+    "isco_2digit": "41",
+    "major_group": "4",
+    "title_de": "Allgemeine Bürokräfte",
+    "employment_thousands": 233.3,
+    "employment": 233270
+  },
+  {
+    "isco_code": "412",
+    "isco_2digit": "41",
+    "major_group": "4",
+    "title_de": "Sekretariatskräfte (allgemein)",
+    "employment_thousands": 22.4,
+    "employment": 22445
+  },
+  {
+    "isco_code": "421",
+    "isco_2digit": "42",
+    "major_group": "4",
+    "title_de": "Schalterbedienstete, Inkassobeauftragte und verwandte Berufe",
+    "employment_thousands": 43.2,
+    "employment": 43186
+  },
+  {
+    "isco_code": "422",
+    "isco_2digit": "42",
+    "major_group": "4",
+    "title_de": "Berufe im Bereich Kundeninformation",
+    "employment_thousands": 25.0,
+    "employment": 25026
+  },
+  {
+    "isco_code": "431",
+    "isco_2digit": "43",
+    "major_group": "4",
+    "title_de": "Bürokräfte im Finanz- und Rechnungswesen und in der Statistik",
+    "employment_thousands": 41.5,
+    "employment": 41503
+  },
+  {
+    "isco_code": "432",
+    "isco_2digit": "43",
+    "major_group": "4",
+    "title_de": "Bürokräfte im Bereich Materialwirtschaft und Transport und verwandte Berufe",
+    "employment_thousands": 84.7,
+    "employment": 84741
+  },
+  {
+    "isco_code": "441",
+    "isco_2digit": "44",
+    "major_group": "4",
+    "title_de": "Sonstige Bürokräfte und verwandte Berufe",
+    "employment_thousands": 63.5,
+    "employment": 63547
+  },
+  {
+    "isco_code": "511",
+    "isco_2digit": "51",
+    "major_group": "5",
+    "title_de": "Reisebegleiter, Schaffner und Reiseleiter",
+    "employment_thousands": 11.6,
+    "employment": 11603
+  },
+  {
+    "isco_code": "512",
+    "isco_2digit": "51",
+    "major_group": "5",
+    "title_de": "Köche",
+    "employment_thousands": 44.6,
+    "employment": 44626
+  },
+  {
+    "isco_code": "513",
+    "isco_2digit": "51",
+    "major_group": "5",
+    "title_de": "Chefs de service, Servicefach-, Servicehilfskräfte in Restaurants und Barkeeper",
+    "employment_thousands": 71.5,
+    "employment": 71520
+  },
+  {
+    "isco_code": "514",
+    "isco_2digit": "51",
+    "major_group": "5",
+    "title_de": "Coiffeurs, Kosmetiker und verwandte Berufe",
+    "employment_thousands": 40.9,
+    "employment": 40860
+  },
+  {
+    "isco_code": "515",
+    "isco_2digit": "51",
+    "major_group": "5",
+    "title_de": "Hauswarte und Hauswirtschaftsleiter",
+    "employment_thousands": 73.6,
+    "employment": 73588
+  },
+  {
+    "isco_code": "516",
+    "isco_2digit": "51",
+    "major_group": "5",
+    "title_de": "Sonstige Berufe im Bereich personenbezogener Dienstleistungen",
+    "employment_thousands": 8.7,
+    "employment": 8670
+  },
+  {
+    "isco_code": "521",
+    "isco_2digit": "52",
+    "major_group": "5",
+    "title_de": "Strassen- und Marktverkäufer",
+    "employment_thousands": 3.3,
+    "employment": 3299
+  },
+  {
+    "isco_code": "522",
+    "isco_2digit": "52",
+    "major_group": "5",
+    "title_de": "Verkaufskräfte in Handelsgeschäften",
+    "employment_thousands": 170.3,
+    "employment": 170312
+  },
+  {
+    "isco_code": "523",
+    "isco_2digit": "52",
+    "major_group": "5",
+    "title_de": "Kassierer und Kartenverkäufer",
+    "employment_thousands": 10.6,
+    "employment": 10629
+  },
+  {
+    "isco_code": "524",
+    "isco_2digit": "52",
+    "major_group": "5",
+    "title_de": "Sonstige Verkaufskräfte",
+    "employment_thousands": 3.7,
+    "employment": 3688
+  },
+  {
+    "isco_code": "531",
+    "isco_2digit": "53",
+    "major_group": "5",
+    "title_de": "Kinder- und Lernbetreuer",
+    "employment_thousands": 36.6,
+    "employment": 36570
+  },
+  {
+    "isco_code": "532",
+    "isco_2digit": "53",
+    "major_group": "5",
+    "title_de": "Betreuungsberufe im Gesundheitswesen",
+    "employment_thousands": 78.2,
+    "employment": 78208
+  },
+  {
+    "isco_code": "541",
+    "isco_2digit": "54",
+    "major_group": "5",
+    "title_de": "Schutzkräfte und Sicherheitsbedienstete",
+    "employment_thousands": 41.8,
+    "employment": 41827
+  },
+  {
+    "isco_code": "611",
+    "isco_2digit": "61",
+    "major_group": "6",
+    "title_de": "Gärtner und Ackerbauern",
+    "employment_thousands": 30.5,
+    "employment": 30550
+  },
+  {
+    "isco_code": "612",
+    "isco_2digit": "61",
+    "major_group": "6",
+    "title_de": "Tierhalter",
+    "employment_thousands": 3.2,
+    "employment": 3239
+  },
+  {
+    "isco_code": "613",
+    "isco_2digit": "61",
+    "major_group": "6",
+    "title_de": "Landwirte mit Ackerbau und Tierhaltung (ohne ausgeprägten Schwerpunkt)",
+    "employment_thousands": 50.5,
+    "employment": 50464
+  },
+  {
+    "isco_code": "621",
+    "isco_2digit": "62",
+    "major_group": "6",
+    "title_de": "Forstarbeitskräfte und verwandte Berufe",
+    "employment_thousands": 4.1,
+    "employment": 4147
+  },
+  {
+    "isco_code": "700",
+    "isco_2digit": "70",
+    "major_group": "7",
+    "title_de": "Handwerks- und verwandte Berufe, onA",
+    "employment_thousands": 2.5,
+    "employment": 2482
+  },
+  {
+    "isco_code": "711",
+    "isco_2digit": "71",
+    "major_group": "7",
+    "title_de": "Baukonstruktions- und verwandte Berufe",
+    "employment_thousands": 73.5,
+    "employment": 73484
+  },
+  {
+    "isco_code": "712",
+    "isco_2digit": "71",
+    "major_group": "7",
+    "title_de": "Ausbaufachkräfte und verwandte Berufe",
+    "employment_thousands": 62.7,
+    "employment": 62666
+  },
+  {
+    "isco_code": "713",
+    "isco_2digit": "71",
+    "major_group": "7",
+    "title_de": "Maler, Gebäudereiniger und verwandte Berufe",
+    "employment_thousands": 29.4,
+    "employment": 29406
+  },
+  {
+    "isco_code": "720",
+    "isco_2digit": "72",
+    "major_group": "7",
+    "title_de": "Metallarbeiter, Mechaniker, Polymechaniker, Produktionsmechaniker und verwandte Berufe, onA",
+    "employment_thousands": 29.8,
+    "employment": 29790
+  },
+  {
+    "isco_code": "721",
+    "isco_2digit": "72",
+    "major_group": "7",
+    "title_de": "Blechkaltverformer, Baumetallverformer, Former (für Metallguss), Schweisser, Anlagen- und Apparatebauer und verwandte Berufe",
+    "employment_thousands": 21.1,
+    "employment": 21086
+  },
+  {
+    "isco_code": "722",
+    "isco_2digit": "72",
+    "major_group": "7",
+    "title_de": "Grobschmiede, Werkzeugmechaniker und verwandte Berufe",
+    "employment_thousands": 17.5,
+    "employment": 17546
+  },
+  {
+    "isco_code": "723",
+    "isco_2digit": "72",
+    "major_group": "7",
+    "title_de": "Maschinenmechaniker und -schlosser",
+    "employment_thousands": 55.8,
+    "employment": 55795
+  },
+  {
+    "isco_code": "731",
+    "isco_2digit": "73",
+    "major_group": "7",
+    "title_de": "Präzisionshandwerker und kunsthandwerkliche Berufe",
+    "employment_thousands": 20.7,
+    "employment": 20652
+  },
+  {
+    "isco_code": "732",
+    "isco_2digit": "73",
+    "major_group": "7",
+    "title_de": "Druckhandwerker",
+    "employment_thousands": 11.4,
+    "employment": 11444
+  },
+  {
+    "isco_code": "741",
+    "isco_2digit": "74",
+    "major_group": "7",
+    "title_de": "Elektroinstallateure und -mechaniker",
+    "employment_thousands": 48.1,
+    "employment": 48085
+  },
+  {
+    "isco_code": "742",
+    "isco_2digit": "74",
+    "major_group": "7",
+    "title_de": "Installateure und Mechaniker für Elektronik und Telekommunikationstechnik",
+    "employment_thousands": 8.7,
+    "employment": 8714
+  },
+  {
+    "isco_code": "751",
+    "isco_2digit": "75",
+    "major_group": "7",
+    "title_de": "Berufe in der Nahrungsmittelverarbeitung und verwandte handwerkliche Fachkräfte",
+    "employment_thousands": 24.2,
+    "employment": 24235
+  },
+  {
+    "isco_code": "752",
+    "isco_2digit": "75",
+    "major_group": "7",
+    "title_de": "Holzbearbeiter, Möbeltischler und verwandte Berufe",
+    "employment_thousands": 4.6,
+    "employment": 4613
+  },
+  {
+    "isco_code": "753",
+    "isco_2digit": "75",
+    "major_group": "7",
+    "title_de": "Berufe der Bekleidungsherstellung und verwandte Berufe",
+    "employment_thousands": 8.5,
+    "employment": 8548
+  },
+  {
+    "isco_code": "754",
+    "isco_2digit": "75",
+    "major_group": "7",
+    "title_de": "Sonstige Handwerks- und verwandte Berufe",
+    "employment_thousands": 13.5,
+    "employment": 13463
+  },
+  {
+    "isco_code": "810",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener stationärer Anlagen und Maschinen, onA",
+    "employment_thousands": 24.3,
+    "employment": 24266
+  },
+  {
+    "isco_code": "811",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener von Anlagen für den Bergbau und die Mineralaufbereitung",
+    "employment_thousands": 1.3,
+    "employment": 1282
+  },
+  {
+    "isco_code": "812",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener von Anlagen in der Metallerzeugung, -umformung und -veredlung",
+    "employment_thousands": 5.3,
+    "employment": 5253
+  },
+  {
+    "isco_code": "813",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener von Anlagen und Maschinen für chemische und fotografische Erzeugnisse",
+    "employment_thousands": 5.6,
+    "employment": 5607
+  },
+  {
+    "isco_code": "814",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener von Maschinen zur Herstellung von Gummi-, Kunststoff- und Papierwaren",
+    "employment_thousands": 2.7,
+    "employment": 2709
+  },
+  {
+    "isco_code": "815",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener von Maschinen zur Herstellung von Textil-, Pelz- und Lederwaren",
+    "employment_thousands": 6.4,
+    "employment": 6398
+  },
+  {
+    "isco_code": "816",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener von Maschinen zur Herstellung von Nahrungs- und Genussmitteln",
+    "employment_thousands": 6.6,
+    "employment": 6595
+  },
+  {
+    "isco_code": "817",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener von Anlagen zur Holzaufbereitung und Papierherstellung",
+    "employment_thousands": 1.4,
+    "employment": 1394
+  },
+  {
+    "isco_code": "818",
+    "isco_2digit": "81",
+    "major_group": "8",
+    "title_de": "Bediener sonstiger stationärer Anlagen und Maschinen",
+    "employment_thousands": 3.5,
+    "employment": 3469
+  },
+  {
+    "isco_code": "821",
+    "isco_2digit": "82",
+    "major_group": "8",
+    "title_de": "Montageberufe",
+    "employment_thousands": 14.8,
+    "employment": 14838
+  },
+  {
+    "isco_code": "830",
+    "isco_2digit": "83",
+    "major_group": "8",
+    "title_de": "Fahrzeugführer und Bediener mobiler Anlagen, onA",
+    "employment_thousands": 10.1,
+    "employment": 10145
+  },
+  {
+    "isco_code": "831",
+    "isco_2digit": "83",
+    "major_group": "8",
+    "title_de": "Lokomotivführer und verwandte Berufe",
+    "employment_thousands": 10.1,
+    "employment": 10113
+  },
+  {
+    "isco_code": "832",
+    "isco_2digit": "83",
+    "major_group": "8",
+    "title_de": "Kraftfahrzeugführer",
+    "employment_thousands": 19.6,
+    "employment": 19610
+  },
+  {
+    "isco_code": "833",
+    "isco_2digit": "83",
+    "major_group": "8",
+    "title_de": "Fahrer schwerer Lastkraftwagen und Busse",
+    "employment_thousands": 46.5,
+    "employment": 46479
+  },
+  {
+    "isco_code": "834",
+    "isco_2digit": "83",
+    "major_group": "8",
+    "title_de": "Bediener mobiler Anlagen",
+    "employment_thousands": 19.7,
+    "employment": 19703
+  },
+  {
+    "isco_code": "900",
+    "isco_2digit": "90",
+    "major_group": "9",
+    "title_de": "Hilfsarbeitskräfte, onA",
+    "employment_thousands": 14.8,
+    "employment": 14806
+  },
+  {
+    "isco_code": "911",
+    "isco_2digit": "91",
+    "major_group": "9",
+    "title_de": "Reinigungspersonal und Hilfskräfte in Privathaushalten, Hotels und Büros",
+    "employment_thousands": 108.2,
+    "employment": 108159
+  },
+  {
+    "isco_code": "912",
+    "isco_2digit": "91",
+    "major_group": "9",
+    "title_de": "Reinigungspersonal für Fahrzeuge, Fenster, Wäsche und sonstige manuelle Reinigungsberufe",
+    "employment_thousands": 1.6,
+    "employment": 1570
+  },
+  {
+    "isco_code": "921",
+    "isco_2digit": "92",
+    "major_group": "9",
+    "title_de": "Hilfsarbeiter in der Land- und Forstwirtschaft und Fischerei",
+    "employment_thousands": 13.2,
+    "employment": 13199
+  },
+  {
+    "isco_code": "931",
+    "isco_2digit": "93",
+    "major_group": "9",
+    "title_de": "Hilfsarbeiter im Bergbau und im Bau",
+    "employment_thousands": 27.3,
+    "employment": 27309
+  },
+  {
+    "isco_code": "932",
+    "isco_2digit": "93",
+    "major_group": "9",
+    "title_de": "Hilfsarbeiter bei der Herstellung von Waren",
+    "employment_thousands": 43.8,
+    "employment": 43786
+  },
+  {
+    "isco_code": "933",
+    "isco_2digit": "93",
+    "major_group": "9",
+    "title_de": "Hilfsarbeiter in Transport und Lagerei",
+    "employment_thousands": 12.7,
+    "employment": 12696
+  },
+  {
+    "isco_code": "941",
+    "isco_2digit": "94",
+    "major_group": "9",
+    "title_de": "Hilfskräfte in der Nahrungsmittelzubereitung",
+    "employment_thousands": 24.1,
+    "employment": 24141
+  },
+  {
+    "isco_code": "961",
+    "isco_2digit": "96",
+    "major_group": "9",
+    "title_de": "Abfallentsorgungsarbeiter",
+    "employment_thousands": 3.7,
+    "employment": 3654
+  },
+  {
+    "isco_code": "962",
+    "isco_2digit": "96",
+    "major_group": "9",
+    "title_de": "Sonstige Hilfsarbeitskräfte",
+    "employment_thousands": 8.0,
+    "employment": 8009
+  }
+]

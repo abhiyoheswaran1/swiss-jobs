@@ -253,19 +253,18 @@ a:hover { text-decoration: underline; }
 <div class="header">
     <h1>Swiss Job Market & AI Exposure</h1>
     <p>
-        Visualizing <strong id="total-jobs" style="color:#fff">0</strong> Swiss jobs
-        across <strong id="total-occs" style="color:#fff">0</strong> occupations from the
-        <a href="https://ec.europa.eu/eurostat">Eurostat</a> Labour Force Survey (ISCO-08)
-        and <a href="https://www.bfs.admin.ch">Swiss Federal Statistical Office</a> wage data.
-        Each rectangle is an occupation — size is number of jobs, color is the selected metric.
-        This is not a report or economic forecast — it is an exploratory tool for visualizing Swiss labour data.
+        Visualizing <strong style="color:#fff" id="total-jobs">0</strong> Swiss jobs
+        across <strong style="color:#fff" id="total-occs">0</strong> occupations from the
+        <a href="https://www.bfs.admin.ch">Swiss Federal Statistical Office</a> (BFS) SAKE survey
+        and wage data. Each rectangle is an occupation — size is number of jobs, color is the selected metric.
+        This is not a report or economic forecast — it is an exploratory tool for visualising Swiss labour data.
     </p>
     <details>
         <summary>Methodology & Data Sources</summary>
         <p>
-            Employment: Eurostat lfsa_egai2d, 2023, Switzerland, ISCO-08 two-digit level, age 15-64.
-            Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by Berufsgruppe (ISCO-08).
-            AI Exposure: Each occupation scored 0-10 by Claude (Anthropic) following
+            Employment: BFS Swiss Labour Force Survey (SAKE) 2019–2021 cumulated, CH-ISCO-19 3-digit level.
+            Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by ISCO-08 2-digit group.
+            AI Exposure: Each occupation scored 0–10 by Claude (Anthropic) following
             <a href="https://karpathy.ai/jobs/">Andrej Karpathy's methodology</a> —
             work done entirely on computers faces the highest exposure.
             Scores do NOT predict job disappearance; they indicate the degree of AI-driven transformation.
@@ -274,9 +273,12 @@ a:hover { text-decoration: underline; }
 </div>
 
 <div class="controls">
-    <button class="mode-btn active" data-mode="exposure">Digital AI Exposure</button>
-    <button class="mode-btn" data-mode="pay">Median Pay</button>
-    <button class="mode-btn" data-mode="education">Education</button>
+    <button class="mode-btn active" data-mode="exposure" data-i18n="btn_exposure">Digital AI Exposure</button>
+    <button class="mode-btn" data-mode="pay" data-i18n="btn_pay">Median Pay</button>
+    <button class="mode-btn" data-mode="education" data-i18n="btn_education">Education</button>
+    <span style="margin-left:auto"></span>
+    <button class="mode-btn active" data-lang="en">EN</button>
+    <button class="mode-btn" data-lang="de">DE</button>
     <div class="legend">
         <span id="legend-low">0 (Minimal)</span>
         <canvas id="legend-bar" width="180" height="10"></canvas>
@@ -299,7 +301,7 @@ a:hover { text-decoration: underline; }
     <div class="stat-card">
         <h3>Total Swiss Jobs</h3>
         <div class="stat-big" id="stat-total-jobs">—</div>
-        <div class="stat-sub">ISCO-08 occupations, Eurostat 2023</div>
+        <div class="stat-sub">ISCO-08 3-digit occupations, BFS SAKE 2019–2021</div>
     </div>
     <div class="stat-card">
         <h3 id="stat-metric-title">Job-Weighted AI Exposure</h3>
@@ -317,10 +319,9 @@ a:hover { text-decoration: underline; }
 </div>
 
 <div class="footer">
-    Built with real Swiss government data. Inspired by
+    <span id="footer-text">Built with real Swiss government data. Inspired by</span>
     <a href="https://karpathy.ai/jobs/">Andrej Karpathy's US Jobs project</a>.
-    Data: <a href="https://ec.europa.eu/eurostat">Eurostat</a> &
-    <a href="https://www.bfs.admin.ch">BFS</a>.
+    Data: <a href="https://www.bfs.admin.ch">BFS</a>.
     Source: <a href="https://github.com/abhiyoheswaran1/swiss-jobs">GitHub</a>.
 </div>
 
@@ -331,9 +332,72 @@ a:hover { text-decoration: underline; }
 let DATA = [];
 let RECTS = [];
 let MODE = 'exposure';
+let LANG = 'en';
 let HOVERED = null;
 const canvas = document.getElementById('treemap');
 const ctx = canvas.getContext('2d');
+
+const I18N = {
+    en: {
+        site_title: 'Swiss Job Market & AI Exposure',
+        site_desc_pre: 'Visualizing ',
+        site_desc_mid: ' Swiss jobs across ',
+        site_desc_post: ' occupations from the Swiss Federal Statistical Office (BFS) SAKE survey and wage data. Each rectangle is an occupation — size is number of jobs, color is the selected metric. This is not a report or economic forecast — it is an exploratory tool for visualising Swiss labour data.',
+        btn_exposure: 'Digital AI Exposure',
+        btn_pay: 'Median Pay',
+        btn_education: 'Education',
+        legend_exp_lo: '0 (Minimal)', legend_exp_hi: '10 (Maximum)',
+        legend_pay_lo: 'CHF 4k', legend_pay_hi: 'CHF 11k',
+        legend_edu_lo: 'No formal', legend_edu_hi: 'University',
+        stat_total_title: 'Total Swiss Jobs',
+        stat_total_sub: 'ISCO-08 3-digit occupations, BFS SAKE 2019–2021',
+        stat_exp_title: 'Job-Weighted AI Exposure', stat_exp_sub: 'Average across all Swiss workers',
+        stat_pay_title: 'Job-Weighted Median Wage', stat_pay_sub: 'Monthly gross, all occupations',
+        stat_edu_title: 'Avg Education Level', stat_edu_sub: 'Job-weighted across occupations',
+        tt_jobs: 'Jobs', tt_exposure: 'AI Exposure', tt_wage: 'Median Wage', tt_education: 'Education',
+        tier_exp: 'Exposure Tiers', tier_pay: 'Wage Tiers', tier_edu: 'Education Tiers',
+        hist_exp: 'Exposure Distribution (jobs)', hist_pay: 'Wage Distribution (jobs)', hist_edu: 'Education Distribution (jobs)',
+        tier_exp_low: 'Low (0–3)', tier_exp_med: 'Medium (4–6)', tier_exp_high: 'High (7–10)',
+        tier_pay_1: '< CHF 5,000', tier_pay_2: 'CHF 5,000–7,000', tier_pay_3: 'CHF 7,000–9,000', tier_pay_4: '> CHF 9,000',
+        tier_edu_1: 'No formal / Basic', tier_edu_2: 'Vocational', tier_edu_3: 'Higher vocational', tier_edu_4: 'University+',
+        hist_edu_labels: ['None','Sec','Voc','H.Voc','Uni+'],
+        methodology_title: 'Methodology & Data Sources',
+        methodology_text: 'Employment: BFS Swiss Labour Force Survey (SAKE) 2019–2021 cumulated, CH-ISCO-19 3-digit level. Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by ISCO-08 2-digit group. AI Exposure: Each occupation scored 0–10 by Claude (Anthropic) following Andrej Karpathy\'s methodology — work done entirely on computers faces the highest exposure. Scores do NOT predict job disappearance; they indicate the degree of AI-driven transformation.',
+        footer: 'Built with real Swiss government data. Inspired by'
+    },
+    de: {
+        site_title: 'Schweizer Arbeitsmarkt & KI-Exposition',
+        site_desc_pre: 'Visualisierung von ',
+        site_desc_mid: ' Schweizer Arbeitsplätzen in ',
+        site_desc_post: ' Berufen aus der BFS SAKE-Erhebung und Lohndaten. Jedes Rechteck ist ein Beruf — die Grösse entspricht der Anzahl Beschäftigter, die Farbe der gewählten Kennzahl. Dies ist kein Bericht oder Wirtschaftsprognose — es ist ein Explorationstool für Schweizer Arbeitsmarktdaten.',
+        btn_exposure: 'Digitale KI-Exposition',
+        btn_pay: 'Medianlohn',
+        btn_education: 'Bildungsniveau',
+        legend_exp_lo: '0 (Minimal)', legend_exp_hi: '10 (Maximum)',
+        legend_pay_lo: 'CHF 4k', legend_pay_hi: 'CHF 11k',
+        legend_edu_lo: 'Keine formale', legend_edu_hi: 'Universität',
+        stat_total_title: 'Schweizer Arbeitsplätze Total',
+        stat_total_sub: 'ISCO-08 3-stellige Berufe, BFS SAKE 2019–2021',
+        stat_exp_title: 'Gewichtete KI-Exposition', stat_exp_sub: 'Durchschnitt über alle Schweizer Beschäftigten',
+        stat_pay_title: 'Gewichteter Medianlohn', stat_pay_sub: 'Brutto monatlich, alle Berufe',
+        stat_edu_title: 'Ø Bildungsniveau', stat_edu_sub: 'Beschäftigungsgewichtet über Berufe',
+        tt_jobs: 'Beschäftigte', tt_exposure: 'KI-Exposition', tt_wage: 'Medianlohn', tt_education: 'Bildung',
+        tier_exp: 'Expositions-Stufen', tier_pay: 'Lohn-Stufen', tier_edu: 'Bildungs-Stufen',
+        hist_exp: 'Expositionsverteilung (Beschäftigte)', hist_pay: 'Lohnverteilung (Beschäftigte)', hist_edu: 'Bildungsverteilung (Beschäftigte)',
+        tier_exp_low: 'Tief (0–3)', tier_exp_med: 'Mittel (4–6)', tier_exp_high: 'Hoch (7–10)',
+        tier_pay_1: '< CHF 5\'000', tier_pay_2: 'CHF 5\'000–7\'000', tier_pay_3: 'CHF 7\'000–9\'000', tier_pay_4: '> CHF 9\'000',
+        tier_edu_1: 'Keine formale / Grundbildung', tier_edu_2: 'Berufslehre', tier_edu_3: 'Höhere Fachschule', tier_edu_4: 'Universität+',
+        hist_edu_labels: ['Keine','Sek','Lehre','HF','Uni+'],
+        methodology_title: 'Methodik & Datenquellen',
+        methodology_text: 'Beschäftigung: BFS Schweizerische Arbeitskräfteerhebung (SAKE) 2019–2021 kumuliert, CH-ISCO-19 3-Steller. Löhne: BFS Lohnstrukturerhebung (LSE) 2022, Brutto-Medianlohn monatlich nach ISCO-08 2-Steller. KI-Exposition: Jeder Beruf mit 0–10 bewertet durch Claude (Anthropic) nach Andrej Karpathys Methodik — rein computerbasierte Arbeit hat die höchste Exposition. Die Werte sagen NICHT das Verschwinden von Stellen voraus; sie zeigen den Grad der KI-getriebenen Transformation.',
+        footer: 'Erstellt mit echten Schweizer Regierungsdaten. Inspiriert von'
+    }
+};
+
+function t(key) { return I18N[LANG][key] || I18N.en[key] || key; }
+function getTitle(item) { return LANG === 'de' ? (item.title_de || item.title) : item.title; }
+function getCategory(item) { return LANG === 'de' ? (item.category_de || item.category) : item.category; }
+function getEducation(item) { return LANG === 'de' ? (item.education_de || item.education) : item.education; }
 
 // ════════════════════════════════════════════════════════════════════
 // Color — RGB interpolation with contrast boost (like Karpathy's)
@@ -498,7 +562,7 @@ function render() {
             ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
             ctx.fillStyle = isH ? '#fff' : 'rgba(255,255,255,0.85)';
             ctx.textBaseline = 'top';
-            ctx.fillText(item.title, tx + 5, ty + 4);
+            ctx.fillText(getTitle(item), tx + 5, ty + 4);
 
             if (th > 34 && tw > 60) {
                 ctx.font = `400 ${Math.max(8, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
@@ -506,7 +570,7 @@ function render() {
                 let sub = '';
                 if (MODE === 'exposure') sub = item.exposure + '/10';
                 else if (MODE === 'pay') sub = item.pay ? 'CHF ' + item.pay.toLocaleString() : '';
-                else sub = item.education;
+                else sub = getEducation(item);
                 ctx.fillText(sub, tx + 5, ty + 4 + fontSize + 2);
             }
             ctx.restore();
@@ -531,9 +595,9 @@ function renderLegend() {
 
     const lo = document.getElementById('legend-low');
     const hi = document.getElementById('legend-high');
-    if (MODE === 'exposure') { lo.textContent = '0 (Minimal)'; hi.textContent = '10 (Maximum)'; }
-    else if (MODE === 'pay') { lo.textContent = 'CHF 4k'; hi.textContent = 'CHF 11k'; }
-    else { lo.textContent = 'No formal'; hi.textContent = 'University'; }
+    if (MODE === 'exposure') { lo.textContent = t('legend_exp_lo'); hi.textContent = t('legend_exp_hi'); }
+    else if (MODE === 'pay') { lo.textContent = t('legend_pay_lo'); hi.textContent = t('legend_pay_hi'); }
+    else { lo.textContent = t('legend_edu_lo'); hi.textContent = t('legend_edu_hi'); }
 }
 
 // ════════════════════════════════════════════════════════════════════
@@ -542,15 +606,15 @@ function renderLegend() {
 function showTooltip(item, mx, my) {
     const tt = document.getElementById('tooltip');
     tt.style.display = 'block';
-    tt.querySelector('.tt-title').textContent = item.title;
-    tt.querySelector('.tt-category').textContent = item.category + ' · ISCO ' + item.isco_code;
+    tt.querySelector('.tt-title').textContent = getTitle(item);
+    tt.querySelector('.tt-category').textContent = getCategory(item) + ' · ISCO ' + item.isco_code;
 
     const expColor = greenRedCSS(item.exposure / 10);
     tt.querySelector('.tt-grid').innerHTML = `
-        <div><div class="tt-label">Jobs</div><div class="tt-value">${item.jobs.toLocaleString()}</div></div>
-        <div><div class="tt-label">AI Exposure</div><div class="tt-value" style="color:${expColor}">${item.exposure}/10</div></div>
-        <div><div class="tt-label">Median Wage</div><div class="tt-value">${item.pay ? 'CHF '+item.pay.toLocaleString()+'/mo' : 'N/A'}</div></div>
-        <div><div class="tt-label">Education</div><div class="tt-value">${item.education}</div></div>`;
+        <div><div class="tt-label">${t('tt_jobs')}</div><div class="tt-value">${item.jobs.toLocaleString()}</div></div>
+        <div><div class="tt-label">${t('tt_exposure')}</div><div class="tt-value" style="color:${expColor}">${item.exposure}/10</div></div>
+        <div><div class="tt-label">${t('tt_wage')}</div><div class="tt-value">${item.pay ? 'CHF '+item.pay.toLocaleString()+'/mo' : 'N/A'}</div></div>
+        <div><div class="tt-label">${t('tt_education')}</div><div class="tt-value">${getEducation(item)}</div></div>`;
     tt.querySelector('.tt-rationale').textContent = item.exposure_rationale || '';
 
     // Position
@@ -573,43 +637,43 @@ function updateStats() {
 
     if (MODE === 'exposure') {
         const w = DATA.reduce((s,d) => s+d.exposure*d.jobs, 0)/total;
-        document.getElementById('stat-metric-title').textContent = 'Job-Weighted AI Exposure';
+        document.getElementById('stat-metric-title').textContent = t('stat_exp_title');
         document.getElementById('stat-metric-value').textContent = w.toFixed(1) + ' / 10';
-        document.getElementById('stat-metric-sub').textContent = 'Average across all Swiss workers';
-        buildHist(11, i => i, d => d.exposure, i => i.toString(), 'Exposure Distribution (jobs)');
+        document.getElementById('stat-metric-sub').textContent = t('stat_exp_sub');
+        buildHist(11, i => i, d => d.exposure, i => i.toString(), t('hist_exp'));
         buildTiers([
-            {label:'Low (0-3)', min:0, max:3, color: greenRedCSS(0.15)},
-            {label:'Medium (4-6)', min:4, max:6, color: greenRedCSS(0.5)},
-            {label:'High (7-10)', min:7, max:10, color: greenRedCSS(0.85)}
-        ], d => d.exposure, total, 'Exposure Tiers');
+            {label:t('tier_exp_low'), min:0, max:3, color: greenRedCSS(0.15)},
+            {label:t('tier_exp_med'), min:4, max:6, color: greenRedCSS(0.5)},
+            {label:t('tier_exp_high'), min:7, max:10, color: greenRedCSS(0.85)}
+        ], d => d.exposure, total, t('tier_exp'));
     } else if (MODE === 'pay') {
         const w = DATA.filter(d=>d.pay).reduce((s,d) => s+d.pay*d.jobs, 0)/total;
-        document.getElementById('stat-metric-title').textContent = 'Job-Weighted Median Wage';
+        document.getElementById('stat-metric-title').textContent = t('stat_pay_title');
         document.getElementById('stat-metric-value').textContent = 'CHF ' + Math.round(w).toLocaleString();
-        document.getElementById('stat-metric-sub').textContent = 'Monthly gross, all occupations';
+        document.getElementById('stat-metric-sub').textContent = t('stat_pay_sub');
         const ranges = ['<5k','5-6k','6-7k','7-8k','8-9k','9-10k','>10k'];
         const lims = [5000,6000,7000,8000,9000,10000,Infinity];
         buildHist(7, i => i, d => { for(let i=0;i<lims.length;i++) if((d.pay||0)<lims[i]) return i; return 6; },
-            i => ranges[i], 'Wage Distribution (jobs)');
+            i => ranges[i], t('hist_pay'));
         buildTiers([
-            {label:'< CHF 5,000', min:0, max:4999, color: greenRedCSS(0.1)},
-            {label:'CHF 5,000–7,000', min:5000, max:7000, color: greenRedCSS(0.35)},
-            {label:'CHF 7,000–9,000', min:7000, max:9000, color: greenRedCSS(0.6)},
-            {label:'> CHF 9,000', min:9000, max:99999, color: greenRedCSS(0.9)}
-        ], d => d.pay||0, total, 'Wage Tiers');
+            {label:t('tier_pay_1'), min:0, max:4999, color: greenRedCSS(0.1)},
+            {label:t('tier_pay_2'), min:5000, max:7000, color: greenRedCSS(0.35)},
+            {label:t('tier_pay_3'), min:7000, max:9000, color: greenRedCSS(0.6)},
+            {label:t('tier_pay_4'), min:9000, max:99999, color: greenRedCSS(0.9)}
+        ], d => d.pay||0, total, t('tier_pay'));
     } else {
         const w = DATA.reduce((s,d) => s+d.education_level*d.jobs, 0)/total;
-        document.getElementById('stat-metric-title').textContent = 'Avg Education Level';
+        document.getElementById('stat-metric-title').textContent = t('stat_edu_title');
         document.getElementById('stat-metric-value').textContent = w.toFixed(1) + ' / 5';
-        document.getElementById('stat-metric-sub').textContent = 'Job-weighted across occupations';
-        const labels = ['None','Sec','Voc','H.Voc','Uni+'];
-        buildHist(5, i => i, d => d.education_level-1, i => labels[i], 'Education Distribution (jobs)');
+        document.getElementById('stat-metric-sub').textContent = t('stat_edu_sub');
+        const labels = t('hist_edu_labels');
+        buildHist(5, i => i, d => d.education_level-1, i => labels[i], t('hist_edu'));
         buildTiers([
-            {label:'No formal / Basic', min:1, max:2, color: greenRedCSS(0.1)},
-            {label:'Vocational', min:3, max:3, color: greenRedCSS(0.4)},
-            {label:'Higher vocational', min:4, max:4, color: greenRedCSS(0.7)},
-            {label:'University+', min:5, max:5, color: greenRedCSS(0.95)}
-        ], d => d.education_level, total, 'Education Tiers');
+            {label:t('tier_edu_1'), min:1, max:2, color: greenRedCSS(0.1)},
+            {label:t('tier_edu_2'), min:3, max:3, color: greenRedCSS(0.4)},
+            {label:t('tier_edu_3'), min:4, max:4, color: greenRedCSS(0.7)},
+            {label:t('tier_edu_4'), min:5, max:5, color: greenRedCSS(0.95)}
+        ], d => d.education_level, total, t('tier_edu'));
     }
 }
 
@@ -654,14 +718,48 @@ canvas.addEventListener('mousemove', e => {
 });
 canvas.addEventListener('mouseleave', () => { HOVERED = null; render(); document.getElementById('tooltip').style.display = 'none'; });
 
-document.querySelectorAll('.mode-btn').forEach(btn => {
+document.querySelectorAll('.mode-btn[data-mode]').forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.mode-btn[data-mode]').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         MODE = btn.dataset.mode;
         render(); renderLegend(); updateStats();
     });
 });
+
+document.querySelectorAll('.mode-btn[data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.mode-btn[data-lang]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        LANG = btn.dataset.lang;
+        document.documentElement.lang = LANG;
+        updateUI();
+    });
+});
+
+function updateUI() {
+    // Header
+    document.querySelector('.header h1').textContent = t('site_title');
+    document.title = t('site_title');
+    const total = DATA.reduce((s,d) => s+d.jobs, 0);
+    document.querySelector('.header p').innerHTML =
+        t('site_desc_pre') + '<strong style="color:#fff">' + total.toLocaleString() + '</strong>' +
+        t('site_desc_mid') + '<strong style="color:#fff">' + DATA.length + '</strong>' +
+        t('site_desc_post');
+    // Methodology
+    document.querySelector('.header summary').textContent = t('methodology_title');
+    document.querySelector('.header details p').textContent = t('methodology_text');
+    // Mode buttons
+    document.querySelectorAll('.mode-btn[data-i18n]').forEach(b => {
+        b.textContent = t(b.dataset.i18n);
+    });
+    // Stats card titles
+    document.querySelector('.stat-card:first-child h3').textContent = t('stat_total_title');
+    document.querySelector('.stat-card:first-child .stat-sub').textContent = t('stat_total_sub');
+    // Re-render everything
+    render(); renderLegend(); updateStats();
+}
+
 window.addEventListener('resize', render);
 
 // ════════════════════════════════════════════════════════════════════

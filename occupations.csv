@@ -1,0 +1,39 @@
+title,slug,isco_code,category,jobs,pay_monthly,pay_annual,education,education_level
+General and keyboard clerks,general-and-keyboard-clerks,41,Clerical Support Workers,248600,6413,76956,Upper secondary / Vocational,3
+Numerical and material recording clerks,numerical-and-material-recording-clerks,43,Clerical Support Workers,140400,5910,70920,Upper secondary / Vocational,3
+Customer services clerks,customer-services-clerks,42,Clerical Support Workers,104200,5793,69516,Upper secondary / Vocational,3
+Other clerical support workers,other-clerical-support-workers,44,Clerical Support Workers,89100,6233,74796,Upper secondary / Vocational,3
+"Building and related trades workers, excluding electricians",building-and-related-trades-workers-excluding-electricians,71,Craft and Related Trades Workers,147000,6066,72792,Upper secondary / Vocational,3
+"Metal, machinery and related trades workers",metal-machinery-and-related-trades-workers,72,Craft and Related Trades Workers,127200,6217,74604,Upper secondary / Vocational,3
+Electrical and electronic trades workers,electrical-and-electronic-trades-workers,74,Craft and Related Trades Workers,73300,6206,74472,Upper secondary / Vocational,3
+"Food processing, wood working, garment and other craft and related trades workers",food-processing-wood-working-garment-and-other-craft-and-related-trades-workers,75,Craft and Related Trades Workers,50000,5099,61188,Upper secondary / Vocational,3
+Handicraft and printing workers,handicraft-and-printing-workers,73,Craft and Related Trades Workers,36200,5866,70392,Upper secondary / Vocational,3
+Cleaners and helpers,cleaners-and-helpers,91,Elementary Occupations,102000,4356,52272,No formal education required,1
+"Labourers in mining, construction, manufacturing and transport",labourers-in-mining-construction-manufacturing-and-transport,93,Elementary Occupations,92000,5403,64836,No formal education required,1
+Food preparation assistants,food-preparation-assistants,94,Elementary Occupations,23900,4227,50724,No formal education required,1
+"Agricultural, forestry and fishery labourers",agricultural-forestry-and-fishery-labourers,92,Elementary Occupations,20000,4840,58080,No formal education required,1
+Refuse workers and other elementary workers,refuse-workers-and-other-elementary-workers,96,Elementary Occupations,11400,5404,64848,No formal education required,1
+Administrative and commercial managers,administrative-and-commercial-managers,12,Managers,128700,10046,120552,Bachelor's degree or higher,5
+Production and specialised services managers,production-and-specialised-services-managers,13,Managers,113800,9585,115020,Bachelor's degree or higher,5
+"Chief executives, senior officials and legislators",chief-executives-senior-officials-and-legislators,11,Managers,105800,10770,129240,Bachelor's degree or higher,5
+"Hospitality, retail and other services managers",hospitality-retail-and-other-services-managers,14,Managers,33200,6118,73416,Bachelor's degree or higher,5
+Drivers and mobile plant operators,drivers-and-mobile-plant-operators,83,Plant and Machine Operators and Assemblers,106800,5673,68076,Upper secondary or less,2
+Stationary plant and machine operators,stationary-plant-and-machine-operators,81,Plant and Machine Operators and Assemblers,53800,5715,68580,Upper secondary or less,2
+Assemblers,assemblers,82,Plant and Machine Operators and Assemblers,9800,5725,68700,Upper secondary or less,2
+Health professionals,health-professionals,22,Professionals,220800,7728,92736,Bachelor's degree or higher,5
+Teaching professionals,teaching-professionals,23,Professionals,213000,9375,112500,Bachelor's degree or higher,5
+Business and administration professionals,business-and-administration-professionals,24,Professionals,204200,9385,112620,Bachelor's degree or higher,5
+Science and engineering professionals,science-and-engineering-professionals,21,Professionals,201700,8468,101616,Bachelor's degree or higher,5
+Information and communications technology professionals,information-and-communications-technology-professionals,25,Professionals,186700,9703,116436,Bachelor's degree or higher,5
+"Legal, social and cultural professionals",legal-social-and-cultural-professionals,26,Professionals,146300,8829,105948,Bachelor's degree or higher,5
+Personal service workers,personal-service-workers,51,Service and Sales Workers,255300,4784,57408,Upper secondary / Vocational,3
+Sales workers,sales-workers,52,Service and Sales Workers,173700,4882,58584,Upper secondary / Vocational,3
+Personal care workers,personal-care-workers,53,Service and Sales Workers,132100,5370,64440,Upper secondary / Vocational,3
+Protective services workers,protective-services-workers,54,Service and Sales Workers,42300,6549,78588,Upper secondary / Vocational,3
+Market-oriented skilled agricultural workers,market-oriented-skilled-agricultural-workers,61,"Skilled Agricultural, Forestry and Fishery Workers",85500,5458,65496,Upper secondary / Vocational,3
+"Market-oriented skilled forestry, fishery and hunting workers",market-oriented-skilled-forestry-fishery-and-hunting-workers,62,"Skilled Agricultural, Forestry and Fishery Workers",4100,5798,69576,Upper secondary / Vocational,3
+Business and administration associate professionals,business-and-administration-associate-professionals,33,Technicians and Associate Professionals,217800,7793,93516,Professional diploma / Higher vocational,4
+Science and engineering associate professionals,science-and-engineering-associate-professionals,31,Technicians and Associate Professionals,198900,7319,87828,Professional diploma / Higher vocational,4
+Health associate professionals,health-associate-professionals,32,Technicians and Associate Professionals,160100,5963,71556,Professional diploma / Higher vocational,4
+"Legal, social, cultural and related associate professionals",legal-social-cultural-and-related-associate-professionals,34,Technicians and Associate Professionals,120200,6827,81924,Professional diploma / Higher vocational,4
+Information and communications technicians,information-and-communications-technicians,35,Technicians and Associate Professionals,38600,7588,91056,Professional diploma / Higher vocational,4

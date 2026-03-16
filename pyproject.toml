@@ -1,0 +1,10 @@
+[project]
+name = "swiss-jobs"
+version = "0.1.0"
+description = "Swiss Job Market & AI Exposure Visualization"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "pandas>=2.1",
+    "anthropic>=0.40",
+]

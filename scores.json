@@ -1,0 +1,154 @@
+{
+  "general-and-keyboard-clerks": {
+    "exposure": 9,
+    "rationale": "General and keyboard clerks perform data entry, typing, filing, and administrative processing \u2014 quintessentially routine digital tasks. AI can automate most of these functions, making this one of the most exposed occupation groups."
+  },
+  "numerical-and-material-recording-clerks": {
+    "exposure": 8,
+    "rationale": "Numerical and material recording clerks handle accounting, stock-keeping, and statistical work \u2014 routine data processing tasks well-suited for AI automation. Spreadsheet work, data reconciliation, and record-keeping are prime automation targets."
+  },
+  "customer-services-clerks": {
+    "exposure": 7,
+    "rationale": "Customer services clerks handle inquiries, bookings, and front-desk tasks. AI chatbots and automated systems are already replacing many of these functions, though complex or emotionally sensitive interactions still require humans."
+  },
+  "other-clerical-support-workers": {
+    "exposure": 7,
+    "rationale": "Other clerical support workers handle mail, coding, proofreading, and miscellaneous office tasks. Many of these routine administrative functions can be automated by AI document processing and workflow tools."
+  },
+  "building-and-related-trades-workers-excluding-electricians": {
+    "exposure": 2,
+    "rationale": "Building trades workers \u2014 masons, carpenters, roofers, painters \u2014 perform physical construction work. AI may assist with planning and estimation, but the hands-on craft work in variable environments resists automation."
+  },
+  "metal-machinery-and-related-trades-workers": {
+    "exposure": 3,
+    "rationale": "Metal and machinery trades workers \u2014 welders, mechanics, toolmakers \u2014 combine physical skill with technical knowledge. While CNC and automation affect manufacturing, skilled repair and custom work remain human-driven."
+  },
+  "electrical-and-electronic-trades-workers": {
+    "exposure": 3,
+    "rationale": "Electrical and electronic trades workers install and maintain electrical systems \u2014 physical work in buildings and infrastructure. AI assists with diagnostics, but hands-on installation and repair in diverse settings keeps exposure low."
+  },
+  "food-processing-wood-working-garment-and-other-craft-and-related-trades-workers": {
+    "exposure": 3,
+    "rationale": "Food processing, woodworking, and garment workers perform physical manufacturing tasks. While some factory automation exists, much of Swiss food production and craft manufacturing involves skilled manual work."
+  },
+  "handicraft-and-printing-workers": {
+    "exposure": 5,
+    "rationale": "Handicraft and printing workers span traditional crafts and digital printing. Print production is already heavily digitized, and AI is impacting graphic design and pre-press work, while artisanal crafts remain manual."
+  },
+  "cleaners-and-helpers": {
+    "exposure": 1,
+    "rationale": "Cleaners and helpers perform manual cleaning in diverse physical environments \u2014 offices, hospitals, homes. This is almost entirely physical work that current AI and robotics cannot effectively automate at scale."
+  },
+  "labourers-in-mining-construction-manufacturing-and-transport": {
+    "exposure": 2,
+    "rationale": "Construction, mining, and transport labourers perform heavy manual work \u2014 digging, lifting, carrying. AI has very limited impact on these physical tasks, though some logistics optimization may help."
+  },
+  "food-preparation-assistants": {
+    "exposure": 2,
+    "rationale": "Food preparation assistants wash dishes, clean kitchens, and prepare basic ingredients. This is physical work in kitchen environments where AI has minimal direct impact."
+  },
+  "agricultural-forestry-and-fishery-labourers": {
+    "exposure": 1,
+    "rationale": "Agricultural labourers perform manual farm work \u2014 harvesting, sorting, loading. This is physically demanding outdoor work with minimal digital component. AI exposure is very low."
+  },
+  "refuse-workers-and-other-elementary-workers": {
+    "exposure": 2,
+    "rationale": "Refuse workers and other elementary workers \u2014 garbage collectors, street sweepers \u2014 perform essential physical services. Automation exists for some waste processing, but collection in varied urban environments remains manual."
+  },
+  "administrative-and-commercial-managers": {
+    "exposure": 7,
+    "rationale": "Administrative and commercial managers work predominantly in digital environments \u2014 finance, HR, marketing, operations. AI tools are already automating reporting, forecasting, and workflow management. Significant transformation of day-to-day managerial tasks."
+  },
+  "production-and-specialised-services-managers": {
+    "exposure": 6,
+    "rationale": "Production and specialized services managers oversee physical operations but spend significant time on planning, scheduling, and analysis. AI will reshape the analytical side while physical oversight remains human-driven."
+  },
+  "chief-executives-senior-officials-and-legislators": {
+    "exposure": 6,
+    "rationale": "Chief executives and legislators increasingly rely on AI for data-driven decision making, strategic analysis, and communication. However, leadership, negotiation, and stakeholder management remain deeply human. Moderate-high reshaping of analytical and administrative aspects."
+  },
+  "hospitality-retail-and-other-services-managers": {
+    "exposure": 4,
+    "rationale": "Hospitality and retail managers deal extensively with in-person customer interactions, staff management, and physical operations. AI helps with scheduling and inventory but the core role requires human presence and interpersonal skills."
+  },
+  "drivers-and-mobile-plant-operators": {
+    "exposure": 3,
+    "rationale": "Drivers and mobile plant operators \u2014 truck drivers, bus drivers, crane operators \u2014 perform physical tasks in dynamic environments. Autonomous vehicles are developing but widespread deployment in Switzerland remains distant."
+  },
+  "stationary-plant-and-machine-operators": {
+    "exposure": 4,
+    "rationale": "Stationary plant and machine operators monitor and control industrial equipment. AI-driven process optimization and predictive maintenance are changing these roles, but operators still oversee physical machinery."
+  },
+  "assemblers": {
+    "exposure": 4,
+    "rationale": "Assemblers work on production lines combining components. While robotic assembly advances, many Swiss manufacturing tasks require human dexterity and quality judgment. AI impacts planning and quality control more than assembly itself."
+  },
+  "health-professionals": {
+    "exposure": 4,
+    "rationale": "Health professionals combine knowledge work with physical patient care. AI will assist with diagnostics, treatment planning, and documentation, but hands-on care, empathy, and complex clinical judgment remain central."
+  },
+  "teaching-professionals": {
+    "exposure": 5,
+    "rationale": "Teaching professionals combine knowledge delivery with interpersonal mentoring and classroom management. AI will transform content creation, grading, and personalized learning, but the human connection in education remains essential."
+  },
+  "business-and-administration-professionals": {
+    "exposure": 8,
+    "rationale": "Business and administration professionals work almost entirely on computers \u2014 financial analysis, consulting, compliance, auditing. AI is already automating report generation, data analysis, and routine advisory work. Very high digital exposure."
+  },
+  "science-and-engineering-professionals": {
+    "exposure": 8,
+    "rationale": "Science and engineering professionals work heavily with computation, modeling, and data analysis \u2014 all areas where AI excels. AI coding assistants, simulation tools, and automated analysis are transforming daily workflows. High digital exposure."
+  },
+  "information-and-communications-technology-professionals": {
+    "exposure": 9,
+    "rationale": "ICT professionals are at the epicenter of AI transformation. AI coding assistants, automated testing, and AI-driven development are fundamentally reshaping software development, system administration, and IT operations. Paradoxically, the profession building AI is most exposed to it."
+  },
+  "legal-social-and-cultural-professionals": {
+    "exposure": 7,
+    "rationale": "Legal, social, and cultural professionals \u2014 lawyers, economists, journalists, artists \u2014 work primarily with text, analysis, and creative output. AI is rapidly advancing in legal research, writing, translation, and creative generation."
+  },
+  "personal-service-workers": {
+    "exposure": 3,
+    "rationale": "Personal service workers \u2014 cooks, waiters, hairdressers, travel guides \u2014 work primarily in physical, face-to-face settings. AI has limited impact on hands-on service delivery, though booking and ordering systems are being automated."
+  },
+  "sales-workers": {
+    "exposure": 5,
+    "rationale": "Sales workers combine product knowledge with customer interaction. AI is transforming e-commerce and personalized recommendations, but in-store retail still relies on human engagement. Mixed exposure across physical and digital channels."
+  },
+  "personal-care-workers": {
+    "exposure": 3,
+    "rationale": "Personal care workers \u2014 childcare, elderly care, healthcare assistants \u2014 provide hands-on physical and emotional care. This deeply human work has very limited AI exposure, though scheduling and documentation may be assisted."
+  },
+  "protective-services-workers": {
+    "exposure": 3,
+    "rationale": "Protective services workers \u2014 police, firefighters, security guards \u2014 work in physical environments requiring real-time judgment and physical intervention. AI assists with surveillance and analysis but cannot replace the physical presence."
+  },
+  "market-oriented-skilled-agricultural-workers": {
+    "exposure": 2,
+    "rationale": "Agricultural workers operate in outdoor physical environments \u2014 planting, harvesting, animal husbandry. While precision agriculture and AI monitoring are emerging, the core work remains manual and weather-dependent."
+  },
+  "market-oriented-skilled-forestry-fishery-and-hunting-workers": {
+    "exposure": 2,
+    "rationale": "Forestry, fishery, and hunting workers operate in remote natural environments with highly physical tasks. AI has minimal direct impact on chainsaw operation, fishing, or wildlife management."
+  },
+  "business-and-administration-associate-professionals": {
+    "exposure": 8,
+    "rationale": "Business and administration associate professionals handle bookkeeping, insurance processing, real estate, and administrative coordination \u2014 mostly computer-based tasks that AI can significantly automate or augment."
+  },
+  "science-and-engineering-associate-professionals": {
+    "exposure": 6,
+    "rationale": "Science and engineering technicians bridge theory and practice \u2014 lab work, technical drawing, quality control. AI assists with analysis and documentation, but much work involves physical equipment operation and on-site technical tasks."
+  },
+  "health-associate-professionals": {
+    "exposure": 4,
+    "rationale": "Health associate professionals (nurses, paramedics, dental hygienists) primarily provide hands-on patient care. AI may assist with monitoring and documentation, but the physical and empathetic care components keep exposure moderate."
+  },
+  "legal-social-cultural-and-related-associate-professionals": {
+    "exposure": 5,
+    "rationale": "Legal, social, and cultural associate professionals include social workers, sports coaches, and religious workers. Many roles involve significant face-to-face interaction and community engagement, limiting AI's direct impact."
+  },
+  "information-and-communications-technicians": {
+    "exposure": 7,
+    "rationale": "ICT technicians handle network operations, user support, and system maintenance. AI-powered monitoring, automated troubleshooting, and self-healing systems are transforming these roles, though physical hardware work remains."
+  }
+}

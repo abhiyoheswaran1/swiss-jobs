@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+.env
+data/bfs_employment_isco.xlsx

@@ -246,6 +246,19 @@ a:hover { text-decoration: underline; }
 .tier-value { color: var(--fg); font-weight: 600; white-space: nowrap; }
 .tier-pct { color: var(--dim); font-size: 11px; }
 
+/* ── Cross-tab bars ───────────────────────────── */
+.xtab-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 0;
+    font-size: 12px;
+}
+.xtab-label { color: var(--muted); min-width: 55px; white-space: nowrap; font-size: 11px; }
+.xtab-bar-wrap { flex: 1; height: 8px; background: rgba(255,255,255,0.04); border-radius: 2px; }
+.xtab-bar { height: 100%; border-radius: 2px; min-width: 2px; }
+.xtab-val { color: var(--fg); font-weight: 600; font-size: 11px; min-width: 28px; text-align: right; }
+
 /* ── Footer ────────────────────────────────────── */
 .footer {
     padding-top: 32px;
@@ -330,9 +343,22 @@ a:hover { text-decoration: underline; }
         <div class="stat-col-label" id="hist-title">Jobs by Exposure</div>
         <div class="histogram" id="histogram"></div>
     </div>
-    <div class="stat-col" style="border-right:none">
+    <div class="stat-col">
         <div class="stat-col-label" id="tier-title">Exposure Tiers</div>
         <div class="tier-list" id="tier-list"></div>
+    </div>
+    <div class="stat-col">
+        <div class="stat-col-label" id="xtab1-title"></div>
+        <div id="xtab1"></div>
+    </div>
+    <div class="stat-col">
+        <div class="stat-col-label" id="xtab2-title"></div>
+        <div id="xtab2"></div>
+    </div>
+    <div class="stat-col" style="border-right:none">
+        <div class="stat-col-label" id="impact-title"></div>
+        <div class="stat-col-big" id="impact-value"></div>
+        <div class="stat-col-sub" id="impact-sub"></div>
     </div>
 </div>
 
@@ -718,6 +744,24 @@ function updateStats() {
     document.getElementById('total-jobs').textContent = total.toLocaleString();
     document.getElementById('total-occs').textContent = DATA.length;
 
+    // Helper: weighted avg for a filtered set
+    function wavg(filter, valFn) {
+        const items = DATA.filter(filter);
+        const tj = items.reduce((s,d) => s+d.jobs, 0);
+        return tj ? items.reduce((s,d) => s+valFn(d)*d.jobs, 0)/tj : 0;
+    }
+
+    // Pay bands for cross-tabs
+    const payBands = [
+        {label:'<5k', min:0, max:4999}, {label:'5–7k', min:5000, max:6999},
+        {label:'7–9k', min:7000, max:8999}, {label:'9k+', min:9000, max:99999}
+    ];
+    // Education levels for cross-tabs
+    const eduLevels = [
+        {label:'Basic', levels:[1,2]}, {label:'Vocational', levels:[3]},
+        {label:'Higher', levels:[4]}, {label:'Uni+', levels:[5]}
+    ];
+
     if (MODE === 'exposure') {
         const w = DATA.reduce((s,d) => s+d.exposure*d.jobs, 0)/total;
         document.getElementById('stat-metric-title').textContent = t('stat_exp_title');
@@ -729,6 +773,18 @@ function updateStats() {
             {label:t('tier_exp_med'), min:4, max:6, color: greenRedCSS(0.5)},
             {label:t('tier_exp_high'), min:7, max:10, color: greenRedCSS(0.85)}
         ], d => d.exposure, total, t('tier_exp'));
+        // Cross-tab: exposure by pay
+        buildXtab('xtab1', 'xtab1-title', 'Exposure by Pay',
+            payBands.map(b => ({label: b.label, value: wavg(d => (d.pay||0)>=b.min && (d.pay||0)<=b.max, d=>d.exposure), max: 10, color: t => greenRedCSS(t/10)})));
+        // Cross-tab: exposure by education
+        buildXtab('xtab2', 'xtab2-title', 'Exposure by Education',
+            eduLevels.map(e => ({label: e.label, value: wavg(d => e.levels.includes(d.education_level), d=>d.exposure), max: 10, color: t => greenRedCSS(t/10)})));
+        // Impact: wages exposed
+        const wagesExposed = DATA.filter(d => d.exposure >= 7).reduce((s,d) => s + (d.pay_annual||0) * d.jobs, 0);
+        document.getElementById('impact-title').textContent = 'Wages Exposed';
+        document.getElementById('impact-value').textContent = 'CHF ' + (wagesExposed/1e9).toFixed(1) + 'B';
+        document.getElementById('impact-sub').textContent = 'annual, in jobs scoring 7+';
+
     } else if (MODE === 'pay') {
         const w = DATA.filter(d=>d.pay).reduce((s,d) => s+d.pay*d.jobs, 0)/total;
         document.getElementById('stat-metric-title').textContent = t('stat_pay_title');
@@ -744,6 +800,19 @@ function updateStats() {
             {label:t('tier_pay_3'), min:7000, max:9000, color: greenRedCSS(0.35)},
             {label:t('tier_pay_4'), min:9000, max:99999, color: greenRedCSS(0.1)}
         ], d => d.pay||0, total, t('tier_pay'));
+        // Cross-tab: pay by education
+        buildXtab('xtab1', 'xtab1-title', 'Pay by Education',
+            eduLevels.map(e => ({label: e.label, value: wavg(d => e.levels.includes(d.education_level), d=>d.pay||0), max: 11000, fmt: v => 'CHF '+(v/1000).toFixed(1)+'k', color: v => greenRedCSS(1 - v/11000)})));
+        // Cross-tab: pay by exposure tier
+        buildXtab('xtab2', 'xtab2-title', 'Pay by Exposure',
+            [{label:'Low 0–3', min:0, max:3}, {label:'Med 4–6', min:4, max:6}, {label:'High 7+', min:7, max:10}]
+            .map(e => ({label: e.label, value: wavg(d => d.exposure>=e.min && d.exposure<=e.max, d=>d.pay||0), max: 11000, fmt: v => 'CHF '+(v/1000).toFixed(1)+'k', color: v => greenRedCSS(1 - v/11000)})));
+        // Impact: total annual wages
+        const totalWages = DATA.reduce((s,d) => s + (d.pay_annual||0) * d.jobs, 0);
+        document.getElementById('impact-title').textContent = 'Total Annual Wages';
+        document.getElementById('impact-value').textContent = 'CHF ' + (totalWages/1e9).toFixed(0) + 'B';
+        document.getElementById('impact-sub').textContent = 'gross, all occupations';
+
     } else {
         const w = DATA.reduce((s,d) => s+d.education_level*d.jobs, 0)/total;
         document.getElementById('stat-metric-title').textContent = t('stat_edu_title');
@@ -757,6 +826,17 @@ function updateStats() {
             {label:t('tier_edu_3'), min:4, max:4, color: greenRedCSS(0.7)},
             {label:t('tier_edu_4'), min:5, max:5, color: greenRedCSS(0.95)}
         ], d => d.education_level, total, t('tier_edu'));
+        // Cross-tab: avg pay by education
+        buildXtab('xtab1', 'xtab1-title', 'Avg Pay by Education',
+            eduLevels.map(e => ({label: e.label, value: wavg(d => e.levels.includes(d.education_level), d=>d.pay||0), max: 11000, fmt: v => 'CHF '+(v/1000).toFixed(1)+'k', color: v => greenRedCSS(1 - v/11000)})));
+        // Cross-tab: exposure by education
+        buildXtab('xtab2', 'xtab2-title', 'Exposure by Education',
+            eduLevels.map(e => ({label: e.label, value: wavg(d => e.levels.includes(d.education_level), d=>d.exposure), max: 10, color: t => greenRedCSS(t/10)})));
+        // Impact: jobs without degree
+        const noDegree = DATA.filter(d => d.education_level <= 2).reduce((s,d) => s+d.jobs, 0);
+        document.getElementById('impact-title').textContent = 'Jobs without Degree';
+        document.getElementById('impact-value').textContent = (noDegree/1e6).toFixed(1) + 'M';
+        document.getElementById('impact-sub').textContent = ((noDegree/total*100).toFixed(0)) + '% of all jobs';
     }
 }
 
@@ -779,6 +859,17 @@ function buildTiers(tiers, valFn, total, title) {
         const jobs = DATA.filter(d => { const v=valFn(d); return v>=t.min && v<=t.max; }).reduce((s,d)=>s+d.jobs,0);
         const pct = (jobs/total*100).toFixed(0);
         return `<div class="tier-row"><span class="tier-dot" style="background:${t.color}"></span><span class="tier-label">${t.label}</span> <span class="tier-value">${(jobs/1e6).toFixed(1)}M</span> <span class="tier-pct">${pct}%</span></div>`;
+    }).join('');
+}
+
+function buildXtab(containerId, titleId, title, rows) {
+    document.getElementById(titleId).textContent = title;
+    const maxVal = Math.max(...rows.map(r => r.value), 0.1);
+    document.getElementById(containerId).innerHTML = rows.map(r => {
+        const pct = (r.value / (r.max || maxVal)) * 100;
+        const col = typeof r.color === 'function' ? r.color(r.value) : greenRedCSS(r.value / (r.max || maxVal));
+        const valStr = r.fmt ? r.fmt(r.value) : r.value.toFixed(1);
+        return `<div class="xtab-row"><span class="xtab-label">${r.label}</span><div class="xtab-bar-wrap"><div class="xtab-bar" style="width:${Math.max(2,pct)}%;background:${col}"></div></div><span class="xtab-val">${valStr}</span></div>`;
     }).join('');
 }
 

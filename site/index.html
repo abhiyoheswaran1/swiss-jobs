@@ -292,23 +292,23 @@ a:hover { text-decoration: underline; }
         Visualizing <strong style="color:#fff" id="total-jobs">0</strong> Swiss jobs
         across <strong style="color:#fff" id="total-occs">0</strong> occupations from the
         <a href="https://www.bfs.admin.ch">Swiss Federal Statistical Office</a> (BFS) SAKE survey
-        and wage data. Each rectangle is an occupation — size is number of jobs, color is the selected metric.
-        This is not a report or economic forecast — it is an exploratory tool for visualising Swiss labour data.
+        and wage data. Each rectangle is an occupation; size is number of jobs, color is the selected metric.
+        This is not a report or economic forecast, it is an exploratory tool for visualising Swiss labour data.
     </p>
     <details>
         <summary>Methodology & Data Sources</summary>
         <p>
-            Employment: BFS Swiss Labour Force Survey (SAKE) 2019–2021 cumulated, CH-ISCO-19 3-digit level.
+            Employment: BFS Swiss Labour Force Survey (SAKE) 2019-2021 cumulated, CH-ISCO-19 3-digit level.
             Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by ISCO-08 2-digit group.
-            AI Exposure: Each occupation scored 0–10 by Claude (Anthropic) following
-            <a href="https://karpathy.ai/jobs/">Andrej Karpathy's methodology</a> —
+            AI Exposure: Each occupation scored 0-10 by Claude (Anthropic) following
+            <a href="https://karpathy.ai/jobs/">Andrej Karpathy's methodology</a>,
             work done entirely on computers faces the highest exposure.
         </p>
     </details>
     <p class="caveat" id="caveat-text">
         <strong style="color:var(--fg)">Caveat on Digital AI Exposure scores:</strong>
         These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear.
-        Software developers score 8/10 because AI is transforming their work — but demand for software could easily grow
+        Software developers score 8/10 because AI is transforming their work, but demand for software could easily grow
         as each developer becomes more productive. The score does not account for demand elasticity, latent demand,
         regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.
     </p>
@@ -397,7 +397,7 @@ const I18N = {
         site_title: 'Swiss Job Market & AI Exposure',
         site_desc_pre: 'Visualizing ',
         site_desc_mid: ' Swiss jobs across ',
-        site_desc_post: ' occupations from the Swiss Federal Statistical Office (BFS) SAKE survey and wage data. Each rectangle is an occupation — size is number of jobs, color is the selected metric. This is not a report or economic forecast — it is an exploratory tool for visualising Swiss labour data.',
+        site_desc_post: ' occupations from the Swiss Federal Statistical Office (BFS) SAKE survey and wage data. Each rectangle is an occupation; size is number of jobs, color is the selected metric. This is not a report or economic forecast, it is an exploratory tool for visualising Swiss labour data.',
         btn_exposure: 'Digital AI Exposure',
         btn_pay: 'Median Pay',
         btn_education: 'Education',
@@ -405,27 +405,27 @@ const I18N = {
         legend_pay_lo: 'CHF 4k', legend_pay_hi: 'CHF 11k',
         legend_edu_lo: 'No formal', legend_edu_hi: 'University',
         stat_total_title: 'Total Swiss Jobs',
-        stat_total_sub: 'ISCO-08 3-digit occupations, BFS SAKE 2019–2021',
+        stat_total_sub: 'ISCO-08 3-digit occupations, BFS SAKE 2019-2021',
         stat_exp_title: 'Job-Weighted AI Exposure', stat_exp_sub: 'Average across all Swiss workers',
         stat_pay_title: 'Job-Weighted Median Wage', stat_pay_sub: 'Monthly gross, all occupations',
         stat_edu_title: 'Avg Education Level', stat_edu_sub: 'Job-weighted across occupations',
         tt_jobs: 'Jobs', tt_exposure: 'AI Exposure', tt_wage: 'Median Wage', tt_education: 'Education',
         tier_exp: 'Exposure Tiers', tier_pay: 'Wage Tiers', tier_edu: 'Education Tiers',
         hist_exp: 'Exposure Distribution (jobs)', hist_pay: 'Wage Distribution (jobs)', hist_edu: 'Education Distribution (jobs)',
-        tier_exp_low: 'Low (0–3)', tier_exp_med: 'Medium (4–6)', tier_exp_high: 'High (7–10)',
-        tier_pay_1: '< CHF 5,000', tier_pay_2: 'CHF 5,000–7,000', tier_pay_3: 'CHF 7,000–9,000', tier_pay_4: '> CHF 9,000',
+        tier_exp_low: 'Low (0-3)', tier_exp_med: 'Medium (4-6)', tier_exp_high: 'High (7-10)',
+        tier_pay_1: '< CHF 5,000', tier_pay_2: 'CHF 5,000-7,000', tier_pay_3: 'CHF 7,000-9,000', tier_pay_4: '> CHF 9,000',
         tier_edu_1: 'No formal / Basic', tier_edu_2: 'Vocational', tier_edu_3: 'Higher vocational', tier_edu_4: 'University+',
         hist_edu_labels: ['None','Sec','Voc','H.Voc','Uni+'],
         methodology_title: 'Methodology & Data Sources',
-        methodology_text: 'Employment: BFS Swiss Labour Force Survey (SAKE) 2019–2021 cumulated, CH-ISCO-19 3-digit level. Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by ISCO-08 2-digit group. AI Exposure: Each occupation scored 0–10 by Claude (Anthropic) following Andrej Karpathy\'s methodology — work done entirely on computers faces the highest exposure. Scores do NOT predict job disappearance; they indicate the degree of AI-driven transformation.',
-        caveat: 'Caveat on Digital AI Exposure scores: These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear. Software developers score 8/10 because AI is transforming their work — but demand for software could easily grow as each developer becomes more productive. The score does not account for demand elasticity, latent demand, regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.',
+        methodology_text: 'Employment: BFS Swiss Labour Force Survey (SAKE) 2019-2021 cumulated, CH-ISCO-19 3-digit level. Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by ISCO-08 2-digit group. AI Exposure: Each occupation scored 0-10 by Claude (Anthropic) following Andrej Karpathy\'s methodology, work done entirely on computers faces the highest exposure. Scores do NOT predict job disappearance; they indicate the degree of AI-driven transformation.',
+        caveat: 'Caveat on Digital AI Exposure scores: These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear. Software developers score 8/10 because AI is transforming their work, but demand for software could easily grow as each developer becomes more productive. The score does not account for demand elasticity, latent demand, regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.',
         footer: 'Built with real Swiss government data. Inspired by'
     },
     de: {
         site_title: 'Schweizer Arbeitsmarkt & KI-Exposition',
         site_desc_pre: 'Visualisierung von ',
         site_desc_mid: ' Schweizer Arbeitsplätzen in ',
-        site_desc_post: ' Berufen aus der BFS SAKE-Erhebung und Lohndaten. Jedes Rechteck ist ein Beruf — die Grösse entspricht der Anzahl Beschäftigter, die Farbe der gewählten Kennzahl. Dies ist kein Bericht oder Wirtschaftsprognose — es ist ein Explorationstool für Schweizer Arbeitsmarktdaten.',
+        site_desc_post: ' Berufen aus der BFS SAKE-Erhebung und Lohndaten. Jedes Rechteck ist ein Beruf; die Grösse entspricht der Anzahl Beschäftigter, die Farbe der gewählten Kennzahl. Dies ist kein Bericht oder Wirtschaftsprognose, es ist ein Explorationstool für Schweizer Arbeitsmarktdaten.',
         btn_exposure: 'Digitale KI-Exposition',
         btn_pay: 'Medianlohn',
         btn_education: 'Bildungsniveau',
@@ -433,20 +433,20 @@ const I18N = {
         legend_pay_lo: 'CHF 4k', legend_pay_hi: 'CHF 11k',
         legend_edu_lo: 'Keine formale', legend_edu_hi: 'Universität',
         stat_total_title: 'Schweizer Arbeitsplätze Total',
-        stat_total_sub: 'ISCO-08 3-stellige Berufe, BFS SAKE 2019–2021',
+        stat_total_sub: 'ISCO-08 3-stellige Berufe, BFS SAKE 2019-2021',
         stat_exp_title: 'Gewichtete KI-Exposition', stat_exp_sub: 'Durchschnitt über alle Schweizer Beschäftigten',
         stat_pay_title: 'Gewichteter Medianlohn', stat_pay_sub: 'Brutto monatlich, alle Berufe',
         stat_edu_title: 'Ø Bildungsniveau', stat_edu_sub: 'Beschäftigungsgewichtet über Berufe',
         tt_jobs: 'Beschäftigte', tt_exposure: 'KI-Exposition', tt_wage: 'Medianlohn', tt_education: 'Bildung',
         tier_exp: 'Expositions-Stufen', tier_pay: 'Lohn-Stufen', tier_edu: 'Bildungs-Stufen',
         hist_exp: 'Expositionsverteilung (Beschäftigte)', hist_pay: 'Lohnverteilung (Beschäftigte)', hist_edu: 'Bildungsverteilung (Beschäftigte)',
-        tier_exp_low: 'Tief (0–3)', tier_exp_med: 'Mittel (4–6)', tier_exp_high: 'Hoch (7–10)',
-        tier_pay_1: '< CHF 5\'000', tier_pay_2: 'CHF 5\'000–7\'000', tier_pay_3: 'CHF 7\'000–9\'000', tier_pay_4: '> CHF 9\'000',
+        tier_exp_low: 'Tief (0-3)', tier_exp_med: 'Mittel (4-6)', tier_exp_high: 'Hoch (7-10)',
+        tier_pay_1: '< CHF 5\'000', tier_pay_2: 'CHF 5\'000-7\'000', tier_pay_3: 'CHF 7\'000-9\'000', tier_pay_4: '> CHF 9\'000',
         tier_edu_1: 'Keine formale / Grundbildung', tier_edu_2: 'Berufslehre', tier_edu_3: 'Höhere Fachschule', tier_edu_4: 'Universität+',
         hist_edu_labels: ['Keine','Sek','Lehre','HF','Uni+'],
         methodology_title: 'Methodik & Datenquellen',
-        methodology_text: 'Beschäftigung: BFS Schweizerische Arbeitskräfteerhebung (SAKE) 2019–2021 kumuliert, CH-ISCO-19 3-Steller. Löhne: BFS Lohnstrukturerhebung (LSE) 2022, Brutto-Medianlohn monatlich nach ISCO-08 2-Steller. KI-Exposition: Jeder Beruf mit 0–10 bewertet durch Claude (Anthropic) nach Andrej Karpathys Methodik — rein computerbasierte Arbeit hat die höchste Exposition. Die Werte sagen NICHT das Verschwinden von Stellen voraus; sie zeigen den Grad der KI-getriebenen Transformation.',
-        caveat: 'Vorbehalt zu den KI-Expositionswerten: Dies sind grobe LLM-Schätzungen, keine rigorosen Vorhersagen. Ein hoher Wert bedeutet nicht, dass der Beruf verschwinden wird. Software-Entwickler erhalten 8/10, weil KI ihre Arbeit transformiert — aber die Nachfrage nach Software könnte leicht wachsen, da jeder Entwickler produktiver wird. Der Wert berücksichtigt weder Nachfrageelastizität noch latente Nachfrage, regulatorische Hürden oder soziale Präferenzen für menschliche Arbeitskräfte. Viele stark exponierte Berufe werden umgestaltet, nicht ersetzt.',
+        methodology_text: 'Beschäftigung: BFS Schweizerische Arbeitskräfteerhebung (SAKE) 2019-2021 kumuliert, CH-ISCO-19 3-Steller. Löhne: BFS Lohnstrukturerhebung (LSE) 2022, Brutto-Medianlohn monatlich nach ISCO-08 2-Steller. KI-Exposition: Jeder Beruf mit 0-10 bewertet durch Claude (Anthropic) nach Andrej Karpathys Methodik, rein computerbasierte Arbeit hat die höchste Exposition. Die Werte sagen NICHT das Verschwinden von Stellen voraus; sie zeigen den Grad der KI-getriebenen Transformation.',
+        caveat: 'Vorbehalt zu den KI-Expositionswerten: Dies sind grobe LLM-Schätzungen, keine rigorosen Vorhersagen. Ein hoher Wert bedeutet nicht, dass der Beruf verschwinden wird. Software-Entwickler erhalten 8/10, weil KI ihre Arbeit transformiert, aber die Nachfrage nach Software könnte leicht wachsen, da jeder Entwickler produktiver wird. Der Wert berücksichtigt weder Nachfrageelastizität noch latente Nachfrage, regulatorische Hürden oder soziale Präferenzen für menschliche Arbeitskräfte. Viele stark exponierte Berufe werden umgestaltet, nicht ersetzt.',
         footer: 'Erstellt mit echten Schweizer Regierungsdaten. Inspiriert von'
     }
 };
@@ -753,8 +753,8 @@ function updateStats() {
 
     // Pay bands for cross-tabs
     const payBands = [
-        {label:'<5k', min:0, max:4999}, {label:'5–7k', min:5000, max:6999},
-        {label:'7–9k', min:7000, max:8999}, {label:'9k+', min:9000, max:99999}
+        {label:'<5k', min:0, max:4999}, {label:'5-7k', min:5000, max:6999},
+        {label:'7-9k', min:7000, max:8999}, {label:'9k+', min:9000, max:99999}
     ];
     // Education levels for cross-tabs
     const eduLevels = [
@@ -805,7 +805,7 @@ function updateStats() {
             eduLevels.map(e => ({label: e.label, value: wavg(d => e.levels.includes(d.education_level), d=>d.pay||0), max: 11000, fmt: v => 'CHF '+(v/1000).toFixed(1)+'k', color: v => greenRedCSS(1 - v/11000)})));
         // Cross-tab: pay by exposure tier
         buildXtab('xtab2', 'xtab2-title', 'Pay by Exposure',
-            [{label:'Low 0–3', min:0, max:3}, {label:'Med 4–6', min:4, max:6}, {label:'High 7+', min:7, max:10}]
+            [{label:'Low 0-3', min:0, max:3}, {label:'Med 4-6', min:4, max:6}, {label:'High 7+', min:7, max:10}]
             .map(e => ({label: e.label, value: wavg(d => d.exposure>=e.min && d.exposure<=e.max, d=>d.pay||0), max: 11000, fmt: v => 'CHF '+(v/1000).toFixed(1)+'k', color: v => greenRedCSS(1 - v/11000)})));
         // Impact: total annual wages
         const totalWages = DATA.reduce((s,d) => s + (d.pay_annual||0) * d.jobs, 0);
@@ -944,7 +944,7 @@ fetch('data.json').then(r => r.json()).then(data => {
     render(); renderLegend(); updateStats();
 }).catch(err => {
     document.querySelector('.treemap-wrap').innerHTML =
-        '<p style="color:#f66;text-align:center;padding:60px 20px">Failed to load data.json — run the data pipeline first.</p>';
+        '<p style="color:#f66;text-align:center;padding:60px 20px">Failed to load data.json. Run the data pipeline first.</p>';
 });
 </script>
 </body>

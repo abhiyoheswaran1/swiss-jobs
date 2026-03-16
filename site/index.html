@@ -475,7 +475,7 @@ function render() {
         const tx = x + gap, ty = y + gap, tw = w - gap*2, th = h - gap*2;
 
         // Fill with occupation color
-        ctx.globalAlpha = isH ? 0.85 : 0.55;
+        ctx.globalAlpha = isH ? 0.9 : 0.65;
         ctx.fillStyle = getColor(item);
         ctx.fillRect(tx, ty, tw, th);
         ctx.globalAlpha = 1;
@@ -487,35 +487,115 @@ function render() {
             ctx.strokeRect(tx, ty, tw, th);
         }
 
-        // Text — clip to tile
-        if (tw > 40 && th > 18) {
+        // Text — fit to tile with smart sizing
+        if (tw > 30 && th > 16) {
             ctx.save();
             ctx.beginPath();
-            ctx.rect(tx + pad, ty + pad, tw - pad*2, th - pad*2);
+            ctx.rect(tx, ty, tw, th);
             ctx.clip();
 
-            const fontSize = Math.min(13, Math.max(9, Math.min(tw/10, th/3)));
+            const cx = tx + tw/2;
+            const cy = ty + th/2;
+            const padX = 6; // horizontal padding inside tile
+            const availW = tw - padX * 2;
+
+            // Shorten long ISCO titles for display
+            let displayTitle = item.title
+                .replace('and related trades workers, excluding electricians', 'trades workers')
+                .replace('and communications technology professionals', '& comms technology professionals')
+                .replace('and communications technicians', '& comms technicians')
+                .replace(', cultural and related associate professionals', ' & cultural assoc. professionals')
+                .replace('and administration associate professionals', '& admin associate professionals')
+                .replace('and administration professionals', '& admin professionals')
+                .replace(', wood working, garment and other craft and related trades workers', ' & other craft workers')
+                .replace('and material recording clerks', '& material recording clerks')
+                .replace(', construction, manufacturing and transport', ', construction & transport')
+                .replace('and mobile plant operators', '& mobile plant operators')
+                .replace(', fishery and hunting workers', ' & hunting workers');
+
+            // Find the right font size: start large and shrink to fit
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            // Title
-            ctx.font = `500 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
-            ctx.fillStyle = isH ? '#fff' : 'rgba(255,255,255,0.85)';
-            const cx = tx + tw/2, cy = ty + th/2;
-            ctx.fillText(item.title, cx, th > 36 ? cy - fontSize*0.55 : cy);
+            let fontSize = Math.min(16, Math.max(9, th / 3.5));
+            ctx.font = `600 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
 
-            // Subtitle
-            if (th > 36) {
-                const subSize = Math.max(8, fontSize - 2);
-                ctx.font = `400 ${subSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
-                ctx.fillStyle = isH ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.55)';
-                let sub = '';
+            // Try to fit — if too wide, try wrapping first, then shrink
+            let lines = [];
+            let measured = ctx.measureText(displayTitle).width;
+
+            if (measured <= availW) {
+                lines = [displayTitle];
+            } else if (th > 34) {
+                // Try word-wrapping into 2 lines
+                const words = displayTitle.split(' ');
+                let line1 = '', line2 = '';
+                let bestSplit = Math.ceil(words.length / 2);
+                // Find best split point near middle
+                for (let i = 1; i < words.length; i++) {
+                    const t1 = words.slice(0, i).join(' ');
+                    const t2 = words.slice(i).join(' ');
+                    const w1 = ctx.measureText(t1).width;
+                    const w2 = ctx.measureText(t2).width;
+                    if (Math.max(w1, w2) <= availW) { line1 = t1; line2 = t2; break; }
+                }
+                if (line1 && line2) {
+                    lines = [line1, line2];
+                } else {
+                    // Shrink font to fit single line
+                    while (fontSize > 8 && measured > availW) {
+                        fontSize -= 0.5;
+                        ctx.font = `600 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+                        measured = ctx.measureText(displayTitle).width;
+                    }
+                    lines = [displayTitle];
+                }
+            } else {
+                // Too short for wrapping — just shrink
+                while (fontSize > 7 && measured > availW) {
+                    fontSize -= 0.5;
+                    ctx.font = `600 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+                    measured = ctx.measureText(displayTitle).width;
+                }
+                lines = [displayTitle];
+            }
+
+            // Calculate subtitle
+            let sub = '';
+            const showSub = th > 30 + lines.length * fontSize;
+            if (showSub) {
                 if (MODE === 'exposure') sub = item.exposure + '/10';
                 else if (MODE === 'pay') sub = item.pay ? 'CHF ' + item.pay.toLocaleString() : '';
                 else sub = item.education;
-                ctx.fillText(sub, cx, cy + fontSize*0.6);
             }
 
+            // Vertical positioning
+            const lineH = fontSize * 1.2;
+            const subH = sub ? fontSize * 0.9 : 0;
+            const totalH = lines.length * lineH + (sub ? subH + 2 : 0);
+            let startY = cy - totalH / 2 + lineH / 2;
+
+            // Draw title text with shadow for readability
+            ctx.shadowColor = 'rgba(0,0,0,0.7)';
+            ctx.shadowBlur = 3;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 1;
+
+            ctx.font = `600 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+            ctx.fillStyle = isH ? '#fff' : 'rgba(255,255,255,0.92)';
+            for (let i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], cx, startY + i * lineH);
+            }
+
+            // Draw subtitle
+            if (sub) {
+                const subSize = Math.max(8, fontSize - 2);
+                ctx.font = `400 ${subSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+                ctx.fillStyle = isH ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.6)';
+                ctx.fillText(sub, cx, startY + lines.length * lineH + 4);
+            }
+
+            ctx.shadowColor = 'transparent';
             ctx.restore();
         }
     }

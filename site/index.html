@@ -16,20 +16,26 @@
     --border-active: rgba(255,255,255,0.2);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; }
 body {
     background: var(--bg);
     color: var(--fg);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
 }
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 28px;
+    padding-right: 28px;
+}
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* ── Header ────────────────────────────────────── */
 .header {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px 28px 16px;
+    padding-top: 20px;
+    padding-bottom: 16px;
 }
 .header h1 {
     font-size: 26px;
@@ -54,12 +60,16 @@ a:hover { text-decoration: underline; }
     margin-top: 6px;
     color: var(--dim);
 }
+.caveat {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-top: 10px;
+    max-width: 1000px;
+}
 
 /* ── Controls ──────────────────────────────────── */
 .controls {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 28px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -98,9 +108,7 @@ a:hover { text-decoration: underline; }
 
 /* ── Treemap ───────────────────────────────────── */
 .treemap-wrap {
-    max-width: 1400px;
-    margin: 12px auto 0;
-    padding: 0 28px;
+    margin-top: 12px;
 }
 #treemap {
     width: 100%;
@@ -162,9 +170,8 @@ a:hover { text-decoration: underline; }
 
 /* ── Stats row (inline, above treemap like Karpathy) ── */
 .stats-row {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 10px 28px 6px;
+    padding-top: 10px;
+    padding-bottom: 6px;
     display: flex;
     align-items: flex-start;
     gap: 0;
@@ -239,17 +246,32 @@ a:hover { text-decoration: underline; }
 
 /* ── Footer ────────────────────────────────────── */
 .footer {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 32px 28px;
+    padding-top: 32px;
+    padding-bottom: 32px;
     font-size: 12px;
     color: var(--dim);
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .stat-col {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+        margin-bottom: 8px;
+    }
+    .stats-row { gap: 0 24px; }
+    .legend { margin-left: 0; margin-top: 8px; }
 }
 </style>
 </head>
 <body>
 
-<div class="header">
+<div class="header container">
     <h1>Swiss Job Market & AI Exposure</h1>
     <p>
         Visualizing <strong style="color:#fff" id="total-jobs">0</strong> Swiss jobs
@@ -266,12 +288,18 @@ a:hover { text-decoration: underline; }
             AI Exposure: Each occupation scored 0–10 by Claude (Anthropic) following
             <a href="https://karpathy.ai/jobs/">Andrej Karpathy's methodology</a> —
             work done entirely on computers faces the highest exposure.
-            Scores do NOT predict job disappearance; they indicate the degree of AI-driven transformation.
         </p>
     </details>
+    <p class="caveat" id="caveat-text">
+        <strong style="color:var(--fg)">Caveat on Digital AI Exposure scores:</strong>
+        These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear.
+        Software developers score 8/10 because AI is transforming their work — but demand for software could easily grow
+        as each developer becomes more productive. The score does not account for demand elasticity, latent demand,
+        regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.
+    </p>
 </div>
 
-<div class="controls">
+<div class="controls container">
     <button class="mode-btn active" data-mode="exposure" data-i18n="btn_exposure">Digital AI Exposure</button>
     <button class="mode-btn" data-mode="pay" data-i18n="btn_pay">Median Pay</button>
     <button class="mode-btn" data-mode="education" data-i18n="btn_education">Education</button>
@@ -285,7 +313,7 @@ a:hover { text-decoration: underline; }
     </div>
 </div>
 
-<div class="stats-row">
+<div class="stats-row container">
     <div class="stat-col">
         <div class="stat-col-label" id="stat-total-label">Total Jobs</div>
         <div class="stat-col-big" id="stat-total-jobs">—</div>
@@ -306,7 +334,7 @@ a:hover { text-decoration: underline; }
     </div>
 </div>
 
-<div class="treemap-wrap">
+<div class="treemap-wrap container">
     <canvas id="treemap"></canvas>
 </div>
 
@@ -317,7 +345,7 @@ a:hover { text-decoration: underline; }
     <div class="tt-rationale"></div>
 </div>
 
-<div class="footer">
+<div class="footer container">
     <span id="footer-text">Built with real Swiss government data. Inspired by</span>
     <a href="https://karpathy.ai/jobs/">Andrej Karpathy's US Jobs project</a>.
     Data: <a href="https://www.bfs.admin.ch">BFS</a>.
@@ -362,6 +390,7 @@ const I18N = {
         hist_edu_labels: ['None','Sec','Voc','H.Voc','Uni+'],
         methodology_title: 'Methodology & Data Sources',
         methodology_text: 'Employment: BFS Swiss Labour Force Survey (SAKE) 2019–2021 cumulated, CH-ISCO-19 3-digit level. Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by ISCO-08 2-digit group. AI Exposure: Each occupation scored 0–10 by Claude (Anthropic) following Andrej Karpathy\'s methodology — work done entirely on computers faces the highest exposure. Scores do NOT predict job disappearance; they indicate the degree of AI-driven transformation.',
+        caveat: 'Caveat on Digital AI Exposure scores: These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear. Software developers score 8/10 because AI is transforming their work — but demand for software could easily grow as each developer becomes more productive. The score does not account for demand elasticity, latent demand, regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.',
         footer: 'Built with real Swiss government data. Inspired by'
     },
     de: {
@@ -389,6 +418,7 @@ const I18N = {
         hist_edu_labels: ['Keine','Sek','Lehre','HF','Uni+'],
         methodology_title: 'Methodik & Datenquellen',
         methodology_text: 'Beschäftigung: BFS Schweizerische Arbeitskräfteerhebung (SAKE) 2019–2021 kumuliert, CH-ISCO-19 3-Steller. Löhne: BFS Lohnstrukturerhebung (LSE) 2022, Brutto-Medianlohn monatlich nach ISCO-08 2-Steller. KI-Exposition: Jeder Beruf mit 0–10 bewertet durch Claude (Anthropic) nach Andrej Karpathys Methodik — rein computerbasierte Arbeit hat die höchste Exposition. Die Werte sagen NICHT das Verschwinden von Stellen voraus; sie zeigen den Grad der KI-getriebenen Transformation.',
+        caveat: 'Vorbehalt zu den KI-Expositionswerten: Dies sind grobe LLM-Schätzungen, keine rigorosen Vorhersagen. Ein hoher Wert bedeutet nicht, dass der Beruf verschwinden wird. Software-Entwickler erhalten 8/10, weil KI ihre Arbeit transformiert — aber die Nachfrage nach Software könnte leicht wachsen, da jeder Entwickler produktiver wird. Der Wert berücksichtigt weder Nachfrageelastizität noch latente Nachfrage, regulatorische Hürden oder soziale Präferenzen für menschliche Arbeitskräfte. Viele stark exponierte Berufe werden umgestaltet, nicht ersetzt.',
         footer: 'Erstellt mit echten Schweizer Regierungsdaten. Inspiriert von'
     }
 };
@@ -795,9 +825,11 @@ function updateUI() {
         t('site_desc_pre') + '<strong style="color:#fff">' + total.toLocaleString() + '</strong>' +
         t('site_desc_mid') + '<strong style="color:#fff">' + DATA.length + '</strong>' +
         t('site_desc_post');
-    // Methodology
+    // Methodology & caveat
     document.querySelector('.header summary').textContent = t('methodology_title');
     document.querySelector('.header details p').textContent = t('methodology_text');
+    const caveatEl = document.getElementById('caveat-text');
+    if (caveatEl) caveatEl.innerHTML = '<strong style="color:var(--fg)">' + t('caveat').split(':')[0] + ':</strong>' + t('caveat').split(':').slice(1).join(':');
     // Mode buttons
     document.querySelectorAll('.mode-btn[data-i18n]').forEach(b => {
         b.textContent = t(b.dataset.i18n);

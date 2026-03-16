@@ -5,382 +5,329 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Swiss Job Market & AI Exposure</title>
 <style>
+:root {
+    --bg: #0a0a0f;
+    --bg2: #12121a;
+    --fg: #e0e0e8;
+    --muted: #888894;
+    --dim: #555560;
+    --accent: #7090ff;
+    --border: rgba(255,255,255,0.1);
+    --border-active: rgba(255,255,255,0.2);
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-    background: #0a0a0f;
-    color: #e0e0e8;
+    background: var(--bg);
+    color: var(--fg);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
 }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-.container {
+/* ── Header ────────────────────────────────────── */
+.header {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 28px 16px;
 }
-
-header {
-    text-align: center;
-    padding: 30px 20px 10px;
-}
-
-header h1 {
-    font-size: 2em;
+.header h1 {
+    font-size: 26px;
     font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 8px;
+    color: #fff;
+    margin-bottom: 6px;
 }
-
-header .subtitle {
-    font-size: 1.05em;
-    color: #9090a8;
+.header p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
     max-width: 800px;
-    margin: 0 auto;
 }
-
-header .subtitle a {
-    color: #7090ff;
-    text-decoration: none;
-}
-
-.intro {
-    text-align: center;
-    padding: 10px 20px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.intro p {
-    color: #8888a0;
-    font-size: 0.9em;
-    margin: 6px 0;
-}
-
-/* Color mode buttons */
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 16px 0;
-    flex-wrap: wrap;
-}
-
-.mode-btn {
-    padding: 8px 18px;
-    border: 1px solid #333;
-    border-radius: 6px;
-    background: #15151f;
-    color: #b0b0c0;
+.header details { margin-top: 8px; }
+.header summary {
+    font-size: 13px;
+    color: var(--accent);
     cursor: pointer;
-    font-size: 0.9em;
-    transition: all 0.2s;
+}
+.header details p {
+    font-size: 13px;
+    margin-top: 6px;
+    color: var(--dim);
 }
 
-.mode-btn:hover {
-    border-color: #555;
-    background: #1a1a2a;
-}
-
-.mode-btn.active {
-    border-color: #7090ff;
-    background: #1a1a3a;
-    color: #ffffff;
-}
-
-/* Legend */
-.legend {
+/* ── Controls ──────────────────────────────────── */
+.controls {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 28px;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 8px;
-    margin: 10px 0 16px;
-    font-size: 0.85em;
-    color: #8888a0;
+    flex-wrap: wrap;
+}
+.mode-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+.mode-btn:hover {
+    background: rgba(255,255,255,0.04);
+}
+.mode-btn.active {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--border-active);
+    color: #fff;
+}
+.legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 16px;
+    font-size: 12px;
+    color: var(--dim);
+}
+.legend canvas {
+    border-radius: 4px;
 }
 
-.legend-bar {
-    width: 200px;
-    height: 12px;
-    border-radius: 6px;
-}
-
-/* Treemap canvas */
-#treemap-container {
-    position: relative;
-    margin: 0 auto;
+/* ── Treemap ───────────────────────────────────── */
+.treemap-wrap {
     max-width: 1400px;
+    margin: 12px auto 0;
+    padding: 0 28px;
 }
-
 #treemap {
     width: 100%;
     display: block;
-    border-radius: 8px;
-    cursor: pointer;
+    cursor: default;
 }
 
-/* Tooltip */
+/* ── Tooltip ───────────────────────────────────── */
 #tooltip {
     display: none;
     position: fixed;
     pointer-events: none;
-    background: #1a1a2a;
-    border: 1px solid #333;
+    background: var(--bg2);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: 8px;
-    padding: 14px 18px;
-    max-width: 420px;
-    min-width: 280px;
+    padding: 12px 16px;
+    max-width: 400px;
+    min-width: 260px;
     z-index: 1000;
     box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    font-size: 13px;
+    transition: opacity 0.12s;
 }
-
-#tooltip .tt-title {
-    font-size: 1.05em;
+.tt-title {
+    font-size: 14px;
     font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 4px;
+    color: #fff;
+    margin-bottom: 2px;
 }
-
-#tooltip .tt-category {
-    font-size: 0.8em;
-    color: #7070a0;
+.tt-category {
+    font-size: 11px;
+    color: var(--dim);
     margin-bottom: 10px;
 }
-
-#tooltip .tt-grid {
+.tt-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px 16px;
+    gap: 8px 20px;
     margin-bottom: 10px;
 }
-
-#tooltip .tt-label {
-    font-size: 0.78em;
-    color: #7070a0;
+.tt-label {
+    font-size: 11px;
+    color: var(--dim);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.08em;
 }
-
-#tooltip .tt-value {
-    font-size: 0.95em;
+.tt-value {
+    font-size: 14px;
     font-weight: 600;
+    color: var(--fg);
 }
-
-#tooltip .tt-rationale {
-    font-size: 0.82em;
-    color: #9090a8;
-    border-top: 1px solid #2a2a3a;
+.tt-rationale {
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255,255,255,0.08);
     padding-top: 8px;
     line-height: 1.5;
 }
 
-/* Stats panel */
-.stats-panel {
-    margin-top: 30px;
+/* ── Stats ─────────────────────────────────────── */
+.stats {
+    max-width: 1400px;
+    margin: 24px auto 0;
+    padding: 0 28px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
 }
-
 .stat-card {
-    background: #12121a;
-    border: 1px solid #222;
+    background: var(--bg2);
+    border: 1px solid rgba(255,255,255,0.06);
     border-radius: 8px;
-    padding: 20px;
+    padding: 16px 20px;
 }
-
 .stat-card h3 {
-    font-size: 0.85em;
-    color: #7070a0;
+    font-size: 11px;
+    color: var(--dim);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
-
 .stat-big {
-    font-size: 2.4em;
+    font-size: 32px;
     font-weight: 700;
-    color: #ffffff;
+    color: #fff;
+    line-height: 1.2;
 }
-
 .stat-sub {
-    font-size: 0.85em;
-    color: #8888a0;
+    font-size: 12px;
+    color: var(--dim);
     margin-top: 4px;
 }
-
 .histogram {
     display: flex;
     align-items: flex-end;
     gap: 3px;
-    height: 80px;
-    margin-top: 12px;
+    height: 54px;
+    margin-top: 10px;
 }
-
-.histogram .bar {
+.bar {
     flex: 1;
-    border-radius: 2px 2px 0 0;
+    border-radius: 1px 1px 0 0;
     min-height: 2px;
     position: relative;
 }
-
-.histogram .bar-label {
+.bar-label {
     position: absolute;
-    bottom: -18px;
+    bottom: -16px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.65em;
-    color: #666;
+    font-size: 9px;
+    color: var(--dim);
     white-space: nowrap;
 }
-
-.tier-list {
-    margin-top: 8px;
-}
-
+.tier-list { margin-top: 4px; }
 .tier-row {
     display: flex;
     justify-content: space-between;
-    padding: 4px 0;
-    font-size: 0.85em;
-    border-bottom: 1px solid #1a1a2a;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
 }
-
-.tier-label {
-    color: #9090a8;
+.tier-row:last-child { border-bottom: none; }
+.tier-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: middle;
 }
+.tier-label { color: var(--muted); }
+.tier-value { color: var(--fg); font-weight: 600; }
+.tier-pct { color: var(--dim); font-size: 12px; margin-left: 4px; }
 
-.tier-value {
-    color: #e0e0e8;
-    font-weight: 600;
-}
-
-.tier-pct {
-    color: #7070a0;
-    font-size: 0.85em;
-    margin-left: 6px;
-}
-
-/* Details toggle */
-details {
-    max-width: 900px;
-    margin: 10px auto;
-    padding: 0 20px;
-}
-
-details summary {
-    color: #7090ff;
-    cursor: pointer;
-    font-size: 0.85em;
-}
-
-details p {
-    color: #8888a0;
-    font-size: 0.82em;
-    margin-top: 8px;
-    line-height: 1.6;
-}
-
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: #555;
-    font-size: 0.8em;
-}
-
-footer a {
-    color: #7090ff;
-    text-decoration: none;
+/* ── Footer ────────────────────────────────────── */
+.footer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px 28px;
+    font-size: 12px;
+    color: var(--dim);
 }
 </style>
 </head>
 <body>
 
-<header>
+<div class="header">
     <h1>Swiss Job Market & AI Exposure</h1>
-    <p class="subtitle">
-        Visualizing <span id="total-jobs">0</span> Swiss jobs across <span id="total-occs">0</span> occupations.
-        Employment data from <a href="https://ec.europa.eu/eurostat">Eurostat</a> (ISCO-08),
-        wages from <a href="https://www.bfs.admin.ch">Swiss Federal Statistical Office</a>.
+    <p>
+        Visualizing <strong id="total-jobs" style="color:#fff">0</strong> Swiss jobs
+        across <strong id="total-occs" style="color:#fff">0</strong> occupations from the
+        <a href="https://ec.europa.eu/eurostat">Eurostat</a> Labour Force Survey (ISCO-08)
+        and <a href="https://www.bfs.admin.ch">Swiss Federal Statistical Office</a> wage data.
+        Each rectangle is an occupation — size is number of jobs, color is the selected metric.
+        This is not a report or economic forecast — it is an exploratory tool for visualizing Swiss labour data.
     </p>
-</header>
-
-<div class="intro">
-    <p>Each rectangle represents an occupation. Size = number of jobs. Color = selected metric below.</p>
-    <p>Hover over tiles for details. This is an exploratory tool, not an economic forecast.</p>
+    <details>
+        <summary>Methodology & Data Sources</summary>
+        <p>
+            Employment: Eurostat lfsa_egai2d, 2023, Switzerland, ISCO-08 two-digit level, age 15-64.
+            Wages: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by Berufsgruppe (ISCO-08).
+            AI Exposure: Each occupation scored 0-10 by Claude (Anthropic) following
+            <a href="https://karpathy.ai/jobs/">Andrej Karpathy's methodology</a> —
+            work done entirely on computers faces the highest exposure.
+            Scores do NOT predict job disappearance; they indicate the degree of AI-driven transformation.
+        </p>
+    </details>
 </div>
 
-<details>
-    <summary>Methodology & Data Sources</summary>
-    <p>
-        Employment data: Eurostat Labour Force Survey (lfsa_egai2d), 2023, Switzerland, ISCO-08 two-digit level.
-        Wage data: BFS Wage Structure Survey (LSE) 2022, median gross monthly wages by occupation group.
-        AI Exposure scores follow <a href="https://karpathy.ai/jobs/">Andrej Karpathy's methodology</a>:
-        a 0-10 scale measuring how fundamentally AI will reshape each occupation over the next 5-10 years.
-        Key principle: work done entirely on computers faces the highest exposure. Scores do NOT predict job disappearance.
-        Education levels are mapped from ISCO-08 skill level requirements.
-    </p>
-</details>
-
-<div class="container">
-    <div class="controls">
-        <button class="mode-btn active" data-mode="exposure">Digital AI Exposure</button>
-        <button class="mode-btn" data-mode="pay">Median Pay (CHF)</button>
-        <button class="mode-btn" data-mode="education">Education Level</button>
-    </div>
-
+<div class="controls">
+    <button class="mode-btn active" data-mode="exposure">Digital AI Exposure</button>
+    <button class="mode-btn" data-mode="pay">Median Pay</button>
+    <button class="mode-btn" data-mode="education">Education</button>
     <div class="legend">
-        <span id="legend-low">Low</span>
-        <canvas id="legend-bar" width="200" height="12"></canvas>
-        <span id="legend-high">High</span>
-    </div>
-
-    <div id="treemap-container">
-        <canvas id="treemap"></canvas>
-    </div>
-
-    <div id="tooltip">
-        <div class="tt-title"></div>
-        <div class="tt-category"></div>
-        <div class="tt-grid"></div>
-        <div class="tt-rationale"></div>
-    </div>
-
-    <div class="stats-panel">
-        <div class="stat-card">
-            <h3>Total Swiss Jobs</h3>
-            <div class="stat-big" id="stat-total-jobs">0</div>
-            <div class="stat-sub">Across ISCO-08 occupations (2023)</div>
-        </div>
-        <div class="stat-card">
-            <h3 id="stat-metric-title">Job-Weighted AI Exposure</h3>
-            <div class="stat-big" id="stat-metric-value">0</div>
-            <div class="stat-sub" id="stat-metric-sub"></div>
-        </div>
-        <div class="stat-card">
-            <h3 id="hist-title">Distribution</h3>
-            <div class="histogram" id="histogram"></div>
-        </div>
-        <div class="stat-card">
-            <h3 id="tier-title">By Tier</h3>
-            <div class="tier-list" id="tier-list"></div>
-        </div>
+        <span id="legend-low">0 (Minimal)</span>
+        <canvas id="legend-bar" width="180" height="10"></canvas>
+        <span id="legend-high">10 (Maximum)</span>
     </div>
 </div>
 
-<footer>
-    <p>
-        Built with real Swiss government data. Inspired by <a href="https://karpathy.ai/jobs/">Andrej Karpathy's US Jobs project</a>.
-        <br>
-        Data: <a href="https://ec.europa.eu/eurostat">Eurostat</a> &
-        <a href="https://www.bfs.admin.ch">BFS</a>.
-        Source: <a href="https://github.com/abhiyoheswaran1/swiss-jobs">GitHub</a>.
-    </p>
-</footer>
+<div class="treemap-wrap">
+    <canvas id="treemap"></canvas>
+</div>
+
+<div id="tooltip">
+    <div class="tt-title"></div>
+    <div class="tt-category"></div>
+    <div class="tt-grid"></div>
+    <div class="tt-rationale"></div>
+</div>
+
+<div class="stats">
+    <div class="stat-card">
+        <h3>Total Swiss Jobs</h3>
+        <div class="stat-big" id="stat-total-jobs">—</div>
+        <div class="stat-sub">ISCO-08 occupations, Eurostat 2023</div>
+    </div>
+    <div class="stat-card">
+        <h3 id="stat-metric-title">Job-Weighted AI Exposure</h3>
+        <div class="stat-big" id="stat-metric-value">—</div>
+        <div class="stat-sub" id="stat-metric-sub"></div>
+    </div>
+    <div class="stat-card">
+        <h3 id="hist-title">Distribution</h3>
+        <div class="histogram" id="histogram"></div>
+    </div>
+    <div class="stat-card">
+        <h3 id="tier-title">By Tier</h3>
+        <div class="tier-list" id="tier-list"></div>
+    </div>
+</div>
+
+<div class="footer">
+    Built with real Swiss government data. Inspired by
+    <a href="https://karpathy.ai/jobs/">Andrej Karpathy's US Jobs project</a>.
+    Data: <a href="https://ec.europa.eu/eurostat">Eurostat</a> &
+    <a href="https://www.bfs.admin.ch">BFS</a>.
+    Source: <a href="https://github.com/abhiyoheswaran1/swiss-jobs">GitHub</a>.
+</div>
 
 <script>
-// ─── Data & State ─────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+// Data & State
+// ════════════════════════════════════════════════════════════════════
 let DATA = [];
 let RECTS = [];
 let MODE = 'exposure';
@@ -388,463 +335,352 @@ let HOVERED = null;
 const canvas = document.getElementById('treemap');
 const ctx = canvas.getContext('2d');
 
-// ─── Color Scales ──────────────────────────────────────────────────
-function hsl(h, s, l) { return `hsl(${h}, ${s}%, ${l}%)`; }
-
-function getColor(occ, mode) {
-    let t;
-    if (mode === 'exposure') {
-        t = occ.exposure / 10;
-    } else if (mode === 'pay') {
-        const minPay = 4000, maxPay = 11000;
-        t = Math.max(0, Math.min(1, (occ.pay - minPay) / (maxPay - minPay)));
-    } else if (mode === 'education') {
-        t = (occ.education_level - 1) / 4;
-    }
+// ════════════════════════════════════════════════════════════════════
+// Color — RGB interpolation with contrast boost (like Karpathy's)
+// ════════════════════════════════════════════════════════════════════
+function greenRedRGB(t) {
+    // t: 0 = green, 1 = red, with contrast boost via power curve
     t = Math.max(0, Math.min(1, t));
-    // Green (120) -> Yellow (60) -> Red (0)
-    const h = 120 * (1 - t);
-    const s = 65 + 15 * t;
-    const l = 30 + 10 * Math.sin(t * Math.PI);
-    return hsl(h, s, l);
+    const p = Math.pow(t, 0.55); // contrast boost
+    const r = Math.round(30 + 225 * p);
+    const g = Math.round(180 - 150 * p);
+    const b = Math.round(40 - 25 * p);
+    return [r, g, b];
 }
 
-function getTextColor(occ, mode) {
-    let t;
-    if (mode === 'exposure') t = occ.exposure / 10;
-    else if (mode === 'pay') t = Math.max(0, Math.min(1, (occ.pay - 4000) / 7000));
-    else t = (occ.education_level - 1) / 4;
-    return t > 0.5 ? '#fff' : '#e8e8f0';
+function greenRedCSS(t) {
+    const [r, g, b] = greenRedRGB(t);
+    return `rgb(${r},${g},${b})`;
 }
 
-// ─── Treemap Layout (squarified) ──────────────────────────────────
+function getNorm(occ) {
+    if (MODE === 'exposure') return occ.exposure / 10;
+    if (MODE === 'pay') {
+        // Log scale similar to Karpathy
+        const lo = Math.log(4000), hi = Math.log(11000);
+        return Math.max(0, Math.min(1, (Math.log(Math.max(occ.pay || 4000, 4000)) - lo) / (hi - lo)));
+    }
+    return (occ.education_level - 1) / 4;
+}
+
+function getColor(occ) { return greenRedCSS(getNorm(occ)); }
+
+// ════════════════════════════════════════════════════════════════════
+// Squarified Treemap Layout
+// ════════════════════════════════════════════════════════════════════
 function squarify(items, x, y, w, h) {
-    if (items.length === 0) return [];
-    if (items.length === 1) {
-        items[0].rect = { x, y, w, h };
-        return [items[0]];
-    }
+    if (!items.length) return;
+    if (items.length === 1) { items[0].rect = {x,y,w,h}; return; }
+    const total = items.reduce((s,d) => s + d.area, 0);
+    if (total <= 0) return;
 
-    const totalArea = items.reduce((s, d) => s + d.area, 0);
-    if (totalArea <= 0) return [];
-
-    const results = [];
     let remaining = [...items];
+    let cur = {x,y,w,h};
 
-    function layoutRow(row, x, y, w, h, horizontal) {
-        const rowArea = row.reduce((s, d) => s + d.area, 0);
-        let offset = 0;
+    function worst(row, side) {
+        const rArea = row.reduce((s,d) => s+d.area, 0);
+        const mx = Math.max(...row.map(d=>d.area));
+        const mn = Math.min(...row.map(d=>d.area));
+        const s2 = side*side;
+        return Math.max(s2*mx/(rArea*rArea), rArea*rArea/(s2*mn));
+    }
+
+    function lay(row) {
+        const rArea = row.reduce((s,d) => s+d.area, 0);
+        const horiz = cur.w >= cur.h;
+        const side = horiz ? cur.w * (rArea/total) : cur.h * (rArea/total);
+        let off = 0;
         for (const item of row) {
-            const fraction = item.area / rowArea;
-            if (horizontal) {
-                const itemW = w * (rowArea / totalArea);
-                const itemH = h * fraction;
-                item.rect = { x: x, y: y + offset, w: itemW, h: itemH };
-                offset += itemH;
+            const frac = item.area / rArea;
+            if (horiz) {
+                item.rect = {x: cur.x, y: cur.y+off, w: side, h: cur.h*frac};
+                off += cur.h*frac;
             } else {
-                const itemH = h * (rowArea / totalArea);
-                const itemW = w * fraction;
-                item.rect = { x: x + offset, y: y, w: itemW, h: itemH };
-                offset += itemW;
+                item.rect = {x: cur.x+off, y: cur.y, w: cur.w*frac, h: side};
+                off += cur.w*frac;
             }
-            results.push(item);
         }
-        return horizontal
-            ? { x: x + w * (rowArea / totalArea), y, w: w - w * (rowArea / totalArea), h }
-            : { x, y: y + h * (rowArea / totalArea), w, h: h - h * (rowArea / totalArea) };
+        if (horiz) { cur = {x: cur.x+side, y: cur.y, w: cur.w-side, h: cur.h}; }
+        else { cur = {x: cur.x, y: cur.y+side, w: cur.w, h: cur.h-side}; }
     }
 
-    function worstRatio(row, sideLength) {
-        const rowArea = row.reduce((s, d) => s + d.area, 0);
-        const maxArea = Math.max(...row.map(d => d.area));
-        const minArea = Math.min(...row.map(d => d.area));
-        const s2 = sideLength * sideLength;
-        return Math.max(
-            (s2 * maxArea) / (rowArea * rowArea),
-            (rowArea * rowArea) / (s2 * minArea)
-        );
-    }
-
-    let currentRow = [];
-    let rect = { x, y, w, h };
-
-    while (remaining.length > 0) {
-        const horizontal = rect.w >= rect.h;
-        const sideLength = horizontal ? rect.h : rect.w;
-        const item = remaining[0];
-
-        const testRow = [...currentRow, item];
-        if (currentRow.length === 0 || worstRatio(testRow, sideLength) <= worstRatio(currentRow, sideLength)) {
-            currentRow.push(item);
-            remaining.shift();
+    let row = [];
+    while (remaining.length) {
+        const side = cur.w >= cur.h ? cur.h : cur.w;
+        const test = [...row, remaining[0]];
+        if (!row.length || worst(test, side) <= worst(row, side)) {
+            row.push(remaining.shift());
         } else {
-            rect = layoutRow(currentRow, rect.x, rect.y, rect.w, rect.h, horizontal);
-            totalArea_local = remaining.reduce((s, d) => s + d.area, 0);
-            currentRow = [];
+            lay(row);
+            row = [];
         }
     }
-
-    if (currentRow.length > 0) {
-        const horizontal = rect.w >= rect.h;
-        layoutRow(currentRow, rect.x, rect.y, rect.w, rect.h, horizontal);
-    }
-
-    return results;
+    if (row.length) lay(row);
 }
 
-// ─── Rendering ─────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+// Render
+// ════════════════════════════════════════════════════════════════════
 function render() {
     const dpr = window.devicePixelRatio || 1;
-    const containerWidth = document.getElementById('treemap-container').clientWidth;
-    const totalJobs = DATA.reduce((s, d) => s + d.jobs, 0);
-    const aspectRatio = 0.55;
-    const canvasW = containerWidth;
-    const canvasH = Math.round(containerWidth * aspectRatio);
+    const wrap = document.querySelector('.treemap-wrap');
+    const cw = wrap.clientWidth;
+    const ch = Math.round(cw * 0.75); // 4:3 like Karpathy
 
-    canvas.width = canvasW * dpr;
-    canvas.height = canvasH * dpr;
-    canvas.style.width = canvasW + 'px';
-    canvas.style.height = canvasH + 'px';
-    ctx.scale(dpr, dpr);
+    canvas.width = cw * dpr;
+    canvas.height = ch * dpr;
+    canvas.style.width = cw + 'px';
+    canvas.style.height = ch + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // Prepare items sorted by jobs descending
-    const items = DATA
-        .filter(d => d.jobs > 0)
-        .map(d => ({
-            ...d,
-            area: d.jobs / totalJobs * canvasW * canvasH
-        }))
-        .sort((a, b) => b.area - a.area);
+    // Background
+    ctx.fillStyle = '#0a0a0f';
+    ctx.fillRect(0, 0, cw, ch);
 
-    // Group by category for better visual grouping
-    const categories = [...new Set(items.map(d => d.category))];
+    if (!DATA.length) return;
+    const totalJobs = DATA.reduce((s,d) => s+d.jobs, 0);
+
+    // Prepare items
+    const items = DATA.filter(d => d.jobs > 0)
+        .map(d => ({...d, area: d.jobs/totalJobs*cw*ch}))
+        .sort((a,b) => b.area - a.area);
+
+    // Group by category
     const catJobs = {};
-    for (const d of items) {
-        catJobs[d.category] = (catJobs[d.category] || 0) + d.jobs;
-    }
-    const sortedCats = categories.sort((a, b) => catJobs[b] - catJobs[a]);
+    for (const d of items) catJobs[d.category] = (catJobs[d.category]||0) + d.jobs;
+    const cats = [...new Set(items.map(d=>d.category))].sort((a,b) => catJobs[b]-catJobs[a]);
 
-    // Layout categories first, then occupations within
-    const catItems = sortedCats.map(cat => ({
+    const catItems = cats.map(cat => ({
         category: cat,
-        area: (catJobs[cat] / totalJobs) * canvasW * canvasH,
-        items: items.filter(d => d.category === cat).sort((a, b) => b.area - a.area)
+        area: catJobs[cat]/totalJobs*cw*ch,
+        items: items.filter(d=>d.category===cat).sort((a,b)=>b.area-a.area)
     }));
 
-    squarify(catItems, 0, 0, canvasW, canvasH);
-
+    squarify(catItems, 0, 0, cw, ch);
     RECTS = [];
     for (const cat of catItems) {
         if (!cat.rect) continue;
-        const { x, y, w, h } = cat.rect;
-        const subItems = cat.items.map(d => ({
-            ...d,
-            area: d.jobs / catJobs[cat.category] * w * h
-        }));
-        squarify(subItems, x, y, w, h);
-        for (const item of subItems) {
-            if (item.rect) RECTS.push(item);
-        }
+        const {x,y,w,h} = cat.rect;
+        const sub = cat.items.map(d => ({...d, area: d.jobs/catJobs[cat.category]*w*h}));
+        squarify(sub, x, y, w, h);
+        for (const s of sub) if (s.rect) RECTS.push(s);
     }
 
-    // Draw rectangles
+    // Draw tiles
     const gap = 1.5;
+    const pad = 0.75;
     for (const item of RECTS) {
-        const { x, y, w, h } = item.rect;
-        const isHovered = HOVERED && HOVERED.slug === item.slug;
+        const {x,y,w,h} = item.rect;
+        const isH = HOVERED && HOVERED.slug === item.slug;
+        const tx = x + gap, ty = y + gap, tw = w - gap*2, th = h - gap*2;
 
-        ctx.fillStyle = getColor(item, MODE);
-        if (isHovered) {
-            ctx.fillStyle = '#ffffff';
+        // Fill with occupation color
+        ctx.globalAlpha = isH ? 0.85 : 0.55;
+        ctx.fillStyle = getColor(item);
+        ctx.fillRect(tx, ty, tw, th);
+        ctx.globalAlpha = 1;
+
+        // Hover: white border
+        if (isH) {
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(tx, ty, tw, th);
         }
-        ctx.fillRect(x + gap, y + gap, w - gap * 2, h - gap * 2);
 
-        // Draw text if tile is large enough
-        if (w > 50 && h > 20) {
-            ctx.fillStyle = isHovered ? '#000000' : getTextColor(item, MODE);
+        // Text — clip to tile
+        if (tw > 40 && th > 18) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(tx + pad, ty + pad, tw - pad*2, th - pad*2);
+            ctx.clip();
+
+            const fontSize = Math.min(13, Math.max(9, Math.min(tw/10, th/3)));
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            const maxChars = Math.floor((w - 10) / 7);
-            let title = item.title;
-            if (title.length > maxChars) title = title.substring(0, maxChars - 1) + '…';
+            // Title
+            ctx.font = `500 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+            ctx.fillStyle = isH ? '#fff' : 'rgba(255,255,255,0.85)';
+            const cx = tx + tw/2, cy = ty + th/2;
+            ctx.fillText(item.title, cx, th > 36 ? cy - fontSize*0.55 : cy);
 
-            const fontSize = Math.min(14, Math.max(9, w / 12));
-            ctx.font = `600 ${fontSize}px -apple-system, sans-serif`;
-            ctx.fillText(title, x + w / 2, y + h / 2 - (h > 40 ? 7 : 0));
-
-            if (h > 40 && w > 60) {
-                const valueFontSize = Math.min(11, fontSize - 1);
-                ctx.font = `400 ${valueFontSize}px -apple-system, sans-serif`;
-                ctx.globalAlpha = isHovered ? 0.7 : 0.75;
-                let label = '';
-                if (MODE === 'exposure') label = `${item.exposure}/10`;
-                else if (MODE === 'pay') label = item.pay ? `CHF ${item.pay.toLocaleString()}` : '';
-                else if (MODE === 'education') label = item.education;
-                if (label.length > maxChars) label = label.substring(0, maxChars - 1) + '…';
-                ctx.fillText(label, x + w / 2, y + h / 2 + 10);
-                ctx.globalAlpha = 1;
+            // Subtitle
+            if (th > 36) {
+                const subSize = Math.max(8, fontSize - 2);
+                ctx.font = `400 ${subSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+                ctx.fillStyle = isH ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.55)';
+                let sub = '';
+                if (MODE === 'exposure') sub = item.exposure + '/10';
+                else if (MODE === 'pay') sub = item.pay ? 'CHF ' + item.pay.toLocaleString() : '';
+                else sub = item.education;
+                ctx.fillText(sub, cx, cy + fontSize*0.6);
             }
+
+            ctx.restore();
         }
     }
 }
 
-// ─── Legend ─────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+// Legend
+// ════════════════════════════════════════════════════════════════════
 function renderLegend() {
-    const legendCanvas = document.getElementById('legend-bar');
-    const lctx = legendCanvas.getContext('2d');
-    const w = 200, h = 12;
-    const grad = lctx.createLinearGradient(0, 0, w, 0);
-    grad.addColorStop(0, hsl(120, 65, 32));
-    grad.addColorStop(0.5, hsl(60, 75, 35));
-    grad.addColorStop(1, hsl(0, 80, 35));
-    lctx.fillStyle = grad;
-    lctx.beginPath();
-    lctx.roundRect(0, 0, w, h, 6);
-    lctx.fill();
-
-    const lowEl = document.getElementById('legend-low');
-    const highEl = document.getElementById('legend-high');
-    if (MODE === 'exposure') {
-        lowEl.textContent = '0 (Minimal)';
-        highEl.textContent = '10 (Maximum)';
-    } else if (MODE === 'pay') {
-        lowEl.textContent = 'CHF 4,000/mo';
-        highEl.textContent = 'CHF 11,000/mo';
-    } else {
-        lowEl.textContent = 'No formal';
-        highEl.textContent = 'University degree';
+    const c = document.getElementById('legend-bar');
+    const lx = c.getContext('2d');
+    lx.clearRect(0,0,180,10);
+    const grad = lx.createLinearGradient(0,0,180,0);
+    for (let i = 0; i <= 10; i++) {
+        const [r,g,b] = greenRedRGB(i/10);
+        grad.addColorStop(i/10, `rgb(${r},${g},${b})`);
     }
+    lx.fillStyle = grad;
+    lx.beginPath(); lx.roundRect(0,0,180,10,4); lx.fill();
+
+    const lo = document.getElementById('legend-low');
+    const hi = document.getElementById('legend-high');
+    if (MODE === 'exposure') { lo.textContent = '0 (Minimal)'; hi.textContent = '10 (Maximum)'; }
+    else if (MODE === 'pay') { lo.textContent = 'CHF 4k'; hi.textContent = 'CHF 11k'; }
+    else { lo.textContent = 'No formal'; hi.textContent = 'University'; }
 }
 
-// ─── Tooltip ──────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+// Tooltip
+// ════════════════════════════════════════════════════════════════════
 function showTooltip(item, mx, my) {
     const tt = document.getElementById('tooltip');
     tt.style.display = 'block';
-
     tt.querySelector('.tt-title').textContent = item.title;
-    tt.querySelector('.tt-category').textContent = `${item.category} · ISCO ${item.isco_code}`;
+    tt.querySelector('.tt-category').textContent = item.category + ' · ISCO ' + item.isco_code;
 
-    const grid = tt.querySelector('.tt-grid');
-    grid.innerHTML = `
+    const expColor = greenRedCSS(item.exposure / 10);
+    tt.querySelector('.tt-grid').innerHTML = `
         <div><div class="tt-label">Jobs</div><div class="tt-value">${item.jobs.toLocaleString()}</div></div>
-        <div><div class="tt-label">AI Exposure</div><div class="tt-value" style="color: ${getColor(item, 'exposure')}">${item.exposure}/10</div></div>
-        <div><div class="tt-label">Median Wage</div><div class="tt-value">${item.pay ? 'CHF ' + item.pay.toLocaleString() + '/mo' : 'N/A'}</div></div>
-        <div><div class="tt-label">Education</div><div class="tt-value">${item.education}</div></div>
-    `;
-
+        <div><div class="tt-label">AI Exposure</div><div class="tt-value" style="color:${expColor}">${item.exposure}/10</div></div>
+        <div><div class="tt-label">Median Wage</div><div class="tt-value">${item.pay ? 'CHF '+item.pay.toLocaleString()+'/mo' : 'N/A'}</div></div>
+        <div><div class="tt-label">Education</div><div class="tt-value">${item.education}</div></div>`;
     tt.querySelector('.tt-rationale').textContent = item.exposure_rationale || '';
 
-    // Position tooltip
-    const ttRect = tt.getBoundingClientRect();
-    let left = mx + 15;
-    let top = my + 15;
-    if (left + ttRect.width > window.innerWidth - 20) left = mx - ttRect.width - 15;
-    if (top + ttRect.height > window.innerHeight - 20) top = my - ttRect.height - 15;
-    if (left < 10) left = 10;
-    if (top < 10) top = 10;
-    tt.style.left = left + 'px';
-    tt.style.top = top + 'px';
+    // Position
+    const r = tt.getBoundingClientRect();
+    let left = mx + 16, top = my + 16;
+    if (left + r.width > window.innerWidth - 16) left = mx - r.width - 16;
+    if (top + r.height > window.innerHeight - 16) top = my - r.height - 16;
+    tt.style.left = Math.max(8, left) + 'px';
+    tt.style.top = Math.max(8, top) + 'px';
 }
 
-function hideTooltip() {
-    document.getElementById('tooltip').style.display = 'none';
-}
-
-// ─── Stats Panel ──────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+// Stats
+// ════════════════════════════════════════════════════════════════════
 function updateStats() {
-    const totalJobs = DATA.reduce((s, d) => s + d.jobs, 0);
-    document.getElementById('stat-total-jobs').textContent = totalJobs.toLocaleString();
-    document.getElementById('total-jobs').textContent = totalJobs.toLocaleString();
+    const total = DATA.reduce((s,d) => s+d.jobs, 0);
+    document.getElementById('stat-total-jobs').textContent = total.toLocaleString();
+    document.getElementById('total-jobs').textContent = total.toLocaleString();
     document.getElementById('total-occs').textContent = DATA.length;
 
     if (MODE === 'exposure') {
-        const weighted = DATA.reduce((s, d) => s + d.exposure * d.jobs, 0) / totalJobs;
+        const w = DATA.reduce((s,d) => s+d.exposure*d.jobs, 0)/total;
         document.getElementById('stat-metric-title').textContent = 'Job-Weighted AI Exposure';
-        document.getElementById('stat-metric-value').textContent = weighted.toFixed(1) + '/10';
+        document.getElementById('stat-metric-value').textContent = w.toFixed(1) + ' / 10';
         document.getElementById('stat-metric-sub').textContent = 'Average across all Swiss workers';
-        renderExposureHist();
-        renderExposureTiers(totalJobs);
+        buildHist(11, i => i, d => d.exposure, i => i.toString(), 'Exposure Distribution (jobs)');
+        buildTiers([
+            {label:'Low (0-3)', min:0, max:3, color: greenRedCSS(0.15)},
+            {label:'Medium (4-6)', min:4, max:6, color: greenRedCSS(0.5)},
+            {label:'High (7-10)', min:7, max:10, color: greenRedCSS(0.85)}
+        ], d => d.exposure, total, 'Exposure Tiers');
     } else if (MODE === 'pay') {
-        const weighted = DATA.filter(d => d.pay).reduce((s, d) => s + d.pay * d.jobs, 0) / totalJobs;
+        const w = DATA.filter(d=>d.pay).reduce((s,d) => s+d.pay*d.jobs, 0)/total;
         document.getElementById('stat-metric-title').textContent = 'Job-Weighted Median Wage';
-        document.getElementById('stat-metric-value').textContent = 'CHF ' + Math.round(weighted).toLocaleString();
-        document.getElementById('stat-metric-sub').textContent = 'Monthly gross, across all occupations';
-        renderPayHist();
-        renderPayTiers(totalJobs);
+        document.getElementById('stat-metric-value').textContent = 'CHF ' + Math.round(w).toLocaleString();
+        document.getElementById('stat-metric-sub').textContent = 'Monthly gross, all occupations';
+        const ranges = ['<5k','5-6k','6-7k','7-8k','8-9k','9-10k','>10k'];
+        const lims = [5000,6000,7000,8000,9000,10000,Infinity];
+        buildHist(7, i => i, d => { for(let i=0;i<lims.length;i++) if((d.pay||0)<lims[i]) return i; return 6; },
+            i => ranges[i], 'Wage Distribution (jobs)');
+        buildTiers([
+            {label:'< CHF 5,000', min:0, max:4999, color: greenRedCSS(0.1)},
+            {label:'CHF 5,000–7,000', min:5000, max:7000, color: greenRedCSS(0.35)},
+            {label:'CHF 7,000–9,000', min:7000, max:9000, color: greenRedCSS(0.6)},
+            {label:'> CHF 9,000', min:9000, max:99999, color: greenRedCSS(0.9)}
+        ], d => d.pay||0, total, 'Wage Tiers');
     } else {
-        const levels = { 1: 'No formal', 2: 'Secondary or less', 3: 'Vocational', 4: 'Higher vocational', 5: 'University+' };
-        const weighted = DATA.reduce((s, d) => s + d.education_level * d.jobs, 0) / totalJobs;
+        const w = DATA.reduce((s,d) => s+d.education_level*d.jobs, 0)/total;
         document.getElementById('stat-metric-title').textContent = 'Avg Education Level';
-        document.getElementById('stat-metric-value').textContent = weighted.toFixed(1) + '/5';
+        document.getElementById('stat-metric-value').textContent = w.toFixed(1) + ' / 5';
         document.getElementById('stat-metric-sub').textContent = 'Job-weighted across occupations';
-        renderEducationHist();
-        renderEducationTiers(totalJobs);
+        const labels = ['None','Sec','Voc','H.Voc','Uni+'];
+        buildHist(5, i => i, d => d.education_level-1, i => labels[i], 'Education Distribution (jobs)');
+        buildTiers([
+            {label:'No formal / Basic', min:1, max:2, color: greenRedCSS(0.1)},
+            {label:'Vocational', min:3, max:3, color: greenRedCSS(0.4)},
+            {label:'Higher vocational', min:4, max:4, color: greenRedCSS(0.7)},
+            {label:'University+', min:5, max:5, color: greenRedCSS(0.95)}
+        ], d => d.education_level, total, 'Education Tiers');
     }
 }
 
-function renderExposureHist() {
-    const buckets = Array(11).fill(0);
-    DATA.forEach(d => { buckets[d.exposure] += d.jobs; });
-    const maxVal = Math.max(...buckets);
-    const html = buckets.map((count, i) => {
-        const pct = maxVal > 0 ? (count / maxVal * 100) : 0;
-        const t = i / 10;
-        const h = 120 * (1 - t);
-        return `<div class="bar" style="height: ${Math.max(2, pct)}%; background: hsl(${h}, 70%, 35%)">
-            <span class="bar-label">${i}</span></div>`;
+function buildHist(n, _idx, valueFn, labelFn, title) {
+    const buckets = Array(n).fill(0);
+    DATA.forEach(d => { const i = valueFn(d); if (i >= 0 && i < n) buckets[i] += d.jobs; });
+    const mx = Math.max(...buckets, 1);
+    document.getElementById('histogram').innerHTML = buckets.map((c, i) => {
+        const pct = c/mx*100;
+        const color = greenRedCSS(i/(n-1));
+        return `<div class="bar" style="height:${Math.max(2,pct)}%;background:${color}"><span class="bar-label">${labelFn(i)}</span></div>`;
     }).join('');
-    document.getElementById('histogram').innerHTML = html;
-    document.getElementById('hist-title').textContent = 'Exposure Distribution (by jobs)';
+    document.getElementById('hist-title').textContent = title;
 }
 
-function renderPayHist() {
-    const ranges = ['<5k', '5-6k', '6-7k', '7-8k', '8-9k', '9-10k', '>10k'];
-    const limits = [5000, 6000, 7000, 8000, 9000, 10000, Infinity];
-    const buckets = Array(7).fill(0);
-    DATA.forEach(d => {
-        if (!d.pay) return;
-        for (let i = 0; i < limits.length; i++) {
-            if (d.pay < limits[i]) { buckets[i] += d.jobs; break; }
-        }
-    });
-    const maxVal = Math.max(...buckets);
-    const html = buckets.map((count, i) => {
-        const pct = maxVal > 0 ? (count / maxVal * 100) : 0;
-        const t = i / 6;
-        const h = 120 * (1 - t);
-        return `<div class="bar" style="height: ${Math.max(2, pct)}%; background: hsl(${h}, 70%, 35%)">
-            <span class="bar-label">${ranges[i]}</span></div>`;
-    }).join('');
-    document.getElementById('histogram').innerHTML = html;
-    document.getElementById('hist-title').textContent = 'Wage Distribution (CHF/mo, by jobs)';
-}
-
-function renderEducationHist() {
-    const labels = ['None', 'Sec-', 'Voc', 'H.Voc', 'Uni+'];
-    const buckets = Array(5).fill(0);
-    DATA.forEach(d => { buckets[d.education_level - 1] += d.jobs; });
-    const maxVal = Math.max(...buckets);
-    const html = buckets.map((count, i) => {
-        const pct = maxVal > 0 ? (count / maxVal * 100) : 0;
-        const t = i / 4;
-        const h = 120 * (1 - t);
-        return `<div class="bar" style="height: ${Math.max(2, pct)}%; background: hsl(${h}, 70%, 35%)">
-            <span class="bar-label">${labels[i]}</span></div>`;
-    }).join('');
-    document.getElementById('histogram').innerHTML = html;
-    document.getElementById('hist-title').textContent = 'Education Distribution (by jobs)';
-}
-
-function renderExposureTiers(totalJobs) {
-    const tiers = [
-        { label: 'Low (0-3)', min: 0, max: 3 },
-        { label: 'Medium (4-6)', min: 4, max: 6 },
-        { label: 'High (7-10)', min: 7, max: 10 },
-    ];
-    renderTiers(tiers, d => d.exposure, totalJobs, 'Exposure Tiers');
-}
-
-function renderPayTiers(totalJobs) {
-    const tiers = [
-        { label: '< CHF 5,000', min: 0, max: 4999 },
-        { label: 'CHF 5,000-7,000', min: 5000, max: 7000 },
-        { label: 'CHF 7,000-9,000', min: 7000, max: 9000 },
-        { label: '> CHF 9,000', min: 9000, max: 99999 },
-    ];
-    renderTiers(tiers, d => d.pay || 0, totalJobs, 'Wage Tiers');
-}
-
-function renderEducationTiers(totalJobs) {
-    const tiers = [
-        { label: 'No formal / Basic', min: 1, max: 2 },
-        { label: 'Vocational', min: 3, max: 3 },
-        { label: 'Higher vocational', min: 4, max: 4 },
-        { label: 'University+', min: 5, max: 5 },
-    ];
-    renderTiers(tiers, d => d.education_level, totalJobs, 'Education Tiers');
-}
-
-function renderTiers(tiers, valueFn, totalJobs, title) {
+function buildTiers(tiers, valFn, total, title) {
     document.getElementById('tier-title').textContent = title;
-    const html = tiers.map(tier => {
-        const jobs = DATA.filter(d => {
-            const v = valueFn(d);
-            return v >= tier.min && v <= tier.max;
-        }).reduce((s, d) => s + d.jobs, 0);
-        const pct = (jobs / totalJobs * 100).toFixed(1);
+    document.getElementById('tier-list').innerHTML = tiers.map(t => {
+        const jobs = DATA.filter(d => { const v=valFn(d); return v>=t.min && v<=t.max; }).reduce((s,d)=>s+d.jobs,0);
+        const pct = (jobs/total*100).toFixed(1);
         return `<div class="tier-row">
-            <span class="tier-label">${tier.label}</span>
-            <span><span class="tier-value">${jobs.toLocaleString()}</span><span class="tier-pct">(${pct}%)</span></span>
+            <span class="tier-label"><span class="tier-dot" style="background:${t.color}"></span>${t.label}</span>
+            <span><span class="tier-value">${jobs.toLocaleString()}</span><span class="tier-pct">${pct}%</span></span>
         </div>`;
     }).join('');
-    document.getElementById('tier-list').innerHTML = html;
 }
 
-// ─── Events ────────────────────────────────────────────────────────
-canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
+// ════════════════════════════════════════════════════════════════════
+// Events
+// ════════════════════════════════════════════════════════════════════
+canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
     let found = null;
     for (const item of RECTS) {
-        const r = item.rect;
-        if (x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h) {
-            found = item;
-            break;
-        }
+        const {x:rx,y:ry,w:rw,h:rh} = item.rect;
+        if (x >= rx && x <= rx+rw && y >= ry && y <= ry+rh) { found = item; break; }
     }
-
-    if (found !== HOVERED) {
-        HOVERED = found;
-        render();
-    }
-
-    if (found) {
-        showTooltip(found, e.clientX, e.clientY);
-        canvas.style.cursor = 'pointer';
-    } else {
-        hideTooltip();
-        canvas.style.cursor = 'default';
-    }
+    if (found !== HOVERED) { HOVERED = found; render(); }
+    if (found) { showTooltip(found, e.clientX, e.clientY); canvas.style.cursor = 'pointer'; }
+    else { document.getElementById('tooltip').style.display = 'none'; canvas.style.cursor = 'default'; }
 });
+canvas.addEventListener('mouseleave', () => { HOVERED = null; render(); document.getElementById('tooltip').style.display = 'none'; });
 
-canvas.addEventListener('mouseleave', () => {
-    HOVERED = null;
-    render();
-    hideTooltip();
-});
-
-// Mode buttons
 document.querySelectorAll('.mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         MODE = btn.dataset.mode;
-        render();
-        renderLegend();
-        updateStats();
+        render(); renderLegend(); updateStats();
     });
 });
+window.addEventListener('resize', render);
 
-// Resize
-window.addEventListener('resize', () => { render(); });
-
-// ─── Init ──────────────────────────────────────────────────────────
-fetch('data.json')
-    .then(r => r.json())
-    .then(data => {
-        DATA = data;
-        render();
-        renderLegend();
-        updateStats();
-    })
-    .catch(err => {
-        console.error('Failed to load data:', err);
-        document.getElementById('treemap-container').innerHTML =
-            '<p style="color: #ff6060; text-align: center; padding: 40px;">Failed to load data.json. Run the data pipeline first.</p>';
-    });
+// ════════════════════════════════════════════════════════════════════
+// Init
+// ════════════════════════════════════════════════════════════════════
+fetch('data.json').then(r => r.json()).then(data => {
+    DATA = data;
+    render(); renderLegend(); updateStats();
+}).catch(err => {
+    document.querySelector('.treemap-wrap').innerHTML =
+        '<p style="color:#f66;text-align:center;padding:60px 20px">Failed to load data.json — run the data pipeline first.</p>';
+});
 </script>
 </body>
 </html>

@@ -473,8 +473,9 @@ function squarify(items, x, y, w, h) {
 
     function lay(row) {
         const rArea = row.reduce((s,d) => s+d.area, 0);
+        const remArea = rArea + remaining.reduce((s,d) => s+d.area, 0);
         const horiz = cur.w >= cur.h;
-        const side = horiz ? cur.w * (rArea/total) : cur.h * (rArea/total);
+        const side = horiz ? cur.w * (rArea/remArea) : cur.h * (rArea/remArea);
         let off = 0;
         for (const item of row) {
             const frac = item.area / rArea;

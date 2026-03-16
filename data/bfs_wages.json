@@ -1,0 +1,284 @@
+{
+  "10": {
+    "isco_code": "10",
+    "title_de": "1 Führungskräfte",
+    "median_wage_monthly_chf": 10056,
+    "median_wage_annual_chf": 120672
+  },
+  "11": {
+    "isco_code": "11",
+    "title_de": "11 Geschäftsführer, Vorstände, leitende Verwaltungsbedienstete und Angehörige gesetzgebender Körperschaften",
+    "median_wage_monthly_chf": 10770,
+    "median_wage_annual_chf": 129240
+  },
+  "12": {
+    "isco_code": "12",
+    "title_de": "12 Führungskräfte im kaufmännischen Bereich",
+    "median_wage_monthly_chf": 10046,
+    "median_wage_annual_chf": 120552
+  },
+  "13": {
+    "isco_code": "13",
+    "title_de": "13 Führungskräfte in der Produktion und bei spezialisierten Dienstleistungen",
+    "median_wage_monthly_chf": 9585,
+    "median_wage_annual_chf": 115020
+  },
+  "14": {
+    "isco_code": "14",
+    "title_de": "14 Führungskräfte in Hotels und Restaurants, im Handel und in der Erbringung sonstiger Dienstleistungen",
+    "median_wage_monthly_chf": 6118,
+    "median_wage_annual_chf": 73416
+  },
+  "20": {
+    "isco_code": "20",
+    "title_de": "2 Intellektuelle und wissenschaftliche Berufe",
+    "median_wage_monthly_chf": 8726,
+    "median_wage_annual_chf": 104712
+  },
+  "21": {
+    "isco_code": "21",
+    "title_de": "21 Naturwissenschaftler, Mathematiker und Ingenieure",
+    "median_wage_monthly_chf": 8468,
+    "median_wage_annual_chf": 101616
+  },
+  "22": {
+    "isco_code": "22",
+    "title_de": "22 Spezialisten in Gesundheitsberufen",
+    "median_wage_monthly_chf": 7728,
+    "median_wage_annual_chf": 92736
+  },
+  "23": {
+    "isco_code": "23",
+    "title_de": "23 Lehrkräfte",
+    "median_wage_monthly_chf": 9375,
+    "median_wage_annual_chf": 112500
+  },
+  "24": {
+    "isco_code": "24",
+    "title_de": "24 Betriebswirte und vergleichbare Spezialisten",
+    "median_wage_monthly_chf": 9385,
+    "median_wage_annual_chf": 112620
+  },
+  "25": {
+    "isco_code": "25",
+    "title_de": "25 Spezialisten in der Informations- und Kommunikationstechnologie",
+    "median_wage_monthly_chf": 9703,
+    "median_wage_annual_chf": 116436
+  },
+  "26": {
+    "isco_code": "26",
+    "title_de": "26 Juristen, Sozialwissenschaftler und Kulturberufe",
+    "median_wage_monthly_chf": 8829,
+    "median_wage_annual_chf": 105948
+  },
+  "30": {
+    "isco_code": "30",
+    "title_de": "3 Techniker und gleichrangige nichttechnische Berufe",
+    "median_wage_monthly_chf": 7325,
+    "median_wage_annual_chf": 87900
+  },
+  "31": {
+    "isco_code": "31",
+    "title_de": "31 Ingenieurtechnische und vergleichbare Fachkräfte",
+    "median_wage_monthly_chf": 7319,
+    "median_wage_annual_chf": 87828
+  },
+  "32": {
+    "isco_code": "32",
+    "title_de": "32 Assistenzberufe im Gesundheitswesen",
+    "median_wage_monthly_chf": 5963,
+    "median_wage_annual_chf": 71556
+  },
+  "33": {
+    "isco_code": "33",
+    "title_de": "33 Betriebswirtschaftliche und kaufmännische Fachkräfte und Verwaltungsfachkräfte",
+    "median_wage_monthly_chf": 7793,
+    "median_wage_annual_chf": 93516
+  },
+  "34": {
+    "isco_code": "34",
+    "title_de": "34 Juristische, soziale, kulturelle und verwandte Fachkräfte",
+    "median_wage_monthly_chf": 6827,
+    "median_wage_annual_chf": 81924
+  },
+  "35": {
+    "isco_code": "35",
+    "title_de": "35 Informations- und Kommunikationstechniker",
+    "median_wage_monthly_chf": 7588,
+    "median_wage_annual_chf": 91056
+  },
+  "40": {
+    "isco_code": "40",
+    "title_de": "4 Bürokräfte und verwandte Berufe",
+    "median_wage_monthly_chf": 6204,
+    "median_wage_annual_chf": 74448
+  },
+  "41": {
+    "isco_code": "41",
+    "title_de": "41 Allgemeine Büro- und Sekretariatskräfte",
+    "median_wage_monthly_chf": 6413,
+    "median_wage_annual_chf": 76956
+  },
+  "42": {
+    "isco_code": "42",
+    "title_de": "42 Bürokräfte mit Kundenkontakt",
+    "median_wage_monthly_chf": 5793,
+    "median_wage_annual_chf": 69516
+  },
+  "43": {
+    "isco_code": "43",
+    "title_de": "43 Bürokräfte im Finanz- und Rechnungswesen, in der Statistik und in der Materialwirtschaft",
+    "median_wage_monthly_chf": 5910,
+    "median_wage_annual_chf": 70920
+  },
+  "44": {
+    "isco_code": "44",
+    "title_de": "44 Sonstige Bürokräfte und verwandte Berufe",
+    "median_wage_monthly_chf": 6233,
+    "median_wage_annual_chf": 74796
+  },
+  "50": {
+    "isco_code": "50",
+    "title_de": "5 Dienstleistungsberufe und Verkäufer",
+    "median_wage_monthly_chf": 4986,
+    "median_wage_annual_chf": 59832
+  },
+  "51": {
+    "isco_code": "51",
+    "title_de": "51 Berufe im Bereich personenbezogener Dienstleistungen",
+    "median_wage_monthly_chf": 4784,
+    "median_wage_annual_chf": 57408
+  },
+  "52": {
+    "isco_code": "52",
+    "title_de": "52 Verkaufskräfte",
+    "median_wage_monthly_chf": 4882,
+    "median_wage_annual_chf": 58584
+  },
+  "53": {
+    "isco_code": "53",
+    "title_de": "53 Betreuungsberufe",
+    "median_wage_monthly_chf": 5370,
+    "median_wage_annual_chf": 64440
+  },
+  "54": {
+    "isco_code": "54",
+    "title_de": "54 Schutzkräfte und Sicherheitsbedienstete",
+    "median_wage_monthly_chf": 6549,
+    "median_wage_annual_chf": 78588
+  },
+  "60": {
+    "isco_code": "60",
+    "title_de": "6 Fachkräfte in Land- und Forstwirtschaft und Fischerei",
+    "median_wage_monthly_chf": 5479,
+    "median_wage_annual_chf": 65748
+  },
+  "61": {
+    "isco_code": "61",
+    "title_de": "61 Fachkräfte in der Landwirtschaft",
+    "median_wage_monthly_chf": 5458,
+    "median_wage_annual_chf": 65496
+  },
+  "62": {
+    "isco_code": "62",
+    "title_de": "62 Fachkräfte in Forstwirtschaft, Fischerei und Jagd - Marktproduktion",
+    "median_wage_monthly_chf": 5798,
+    "median_wage_annual_chf": 69576
+  },
+  "70": {
+    "isco_code": "70",
+    "title_de": "7 Handwerks- und verwandte Berufe",
+    "median_wage_monthly_chf": 6049,
+    "median_wage_annual_chf": 72588
+  },
+  "71": {
+    "isco_code": "71",
+    "title_de": "71 Bau- und Ausbaufachkräfte sowie verwandte Berufe, ausgenommen Elektriker",
+    "median_wage_monthly_chf": 6066,
+    "median_wage_annual_chf": 72792
+  },
+  "72": {
+    "isco_code": "72",
+    "title_de": "72 Metallarbeiter, Mechaniker, Polymechaniker, Produktionsmechaniker und verwandte Berufe",
+    "median_wage_monthly_chf": 6217,
+    "median_wage_annual_chf": 74604
+  },
+  "73": {
+    "isco_code": "73",
+    "title_de": "73 Präzisionshandwerker, Drucker und kunsthandwerkliche Berufe",
+    "median_wage_monthly_chf": 5866,
+    "median_wage_annual_chf": 70392
+  },
+  "74": {
+    "isco_code": "74",
+    "title_de": "74 Elektriker und Elektroniker",
+    "median_wage_monthly_chf": 6206,
+    "median_wage_annual_chf": 74472
+  },
+  "75": {
+    "isco_code": "75",
+    "title_de": "75 Berufe in der Nahrungsmittelverarbeitung, Holzverarbeitung und Bekleidungsherstellung und verwandte handwerkliche Fachkräfte",
+    "median_wage_monthly_chf": 5099,
+    "median_wage_annual_chf": 61188
+  },
+  "80": {
+    "isco_code": "80",
+    "title_de": "8 Bediener von Anlagen und Maschinen und Montageberufe",
+    "median_wage_monthly_chf": 5693,
+    "median_wage_annual_chf": 68316
+  },
+  "81": {
+    "isco_code": "81",
+    "title_de": "81 Bediener stationärer Anlagen und Maschinen",
+    "median_wage_monthly_chf": 5715,
+    "median_wage_annual_chf": 68580
+  },
+  "82": {
+    "isco_code": "82",
+    "title_de": "82 Montageberufe",
+    "median_wage_monthly_chf": 5725,
+    "median_wage_annual_chf": 68700
+  },
+  "83": {
+    "isco_code": "83",
+    "title_de": "83 Fahrzeugführer und Bediener mobiler Anlagen",
+    "median_wage_monthly_chf": 5673,
+    "median_wage_annual_chf": 68076
+  },
+  "90": {
+    "isco_code": "90",
+    "title_de": "9 Hilfsarbeitskräfte",
+    "median_wage_monthly_chf": 4990,
+    "median_wage_annual_chf": 59880
+  },
+  "91": {
+    "isco_code": "91",
+    "title_de": "91 Reinigungspersonal und Hilfskräfte",
+    "median_wage_monthly_chf": 4356,
+    "median_wage_annual_chf": 52272
+  },
+  "92": {
+    "isco_code": "92",
+    "title_de": "92 Hilfsarbeiter in der Land- und Forstwirtschaft und Fischerei",
+    "median_wage_monthly_chf": 4840,
+    "median_wage_annual_chf": 58080
+  },
+  "93": {
+    "isco_code": "93",
+    "title_de": "93 Hilfsarbeiter im Bergbau, im Bau, bei der Herstellung von Waren und im Transportwesen",
+    "median_wage_monthly_chf": 5403,
+    "median_wage_annual_chf": 64836
+  },
+  "94": {
+    "isco_code": "94",
+    "title_de": "94 Hilfskräfte in der Nahrungsmittelzubereitung",
+    "median_wage_monthly_chf": 4227,
+    "median_wage_annual_chf": 50724
+  },
+  "96": {
+    "isco_code": "96",
+    "title_de": "96 Abfallentsorgungsarbeiter und sonstige Hilfsarbeitskräfte",
+    "median_wage_monthly_chf": 5404,
+    "median_wage_annual_chf": 64848
+  }
+}

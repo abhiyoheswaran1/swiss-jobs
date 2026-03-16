@@ -393,14 +393,26 @@ const I18N = {
     }
 };
 
-const MAJOR_GROUPS_DE = {
-    'Armed Forces': 'Streitkräfte', 'Managers': 'Führungskräfte',
-    'Professionals': 'Akademische Berufe', 'Technicians and Associate Professionals': 'Techniker und gleichrangige Berufe',
-    'Clerical Support Workers': 'Bürokräfte', 'Service and Sales Workers': 'Dienstleistungsberufe und Verkäufer',
-    'Skilled Agricultural, Forestry and Fishery Workers': 'Fachkräfte Landwirtschaft/Fischerei',
-    'Craft and Related Trades Workers': 'Handwerks- und verwandte Berufe',
-    'Plant and Machine Operators and Assemblers': 'Anlagen-/Maschinenbediener',
-    'Elementary Occupations': 'Hilfsarbeitskräfte'
+// Short category labels for treemap headers
+const CAT_SHORT = {
+    en: {
+        'Armed Forces': 'Armed Forces', 'Managers': 'Managers',
+        'Professionals': 'Professionals', 'Technicians and Associate Professionals': 'Technicians',
+        'Clerical Support Workers': 'Clerical Workers', 'Service and Sales Workers': 'Service & Sales',
+        'Skilled Agricultural, Forestry and Fishery Workers': 'Agriculture & Forestry',
+        'Craft and Related Trades Workers': 'Craft & Trades',
+        'Plant and Machine Operators and Assemblers': 'Machine Operators',
+        'Elementary Occupations': 'Elementary Occupations'
+    },
+    de: {
+        'Armed Forces': 'Streitkräfte', 'Managers': 'Führungskräfte',
+        'Professionals': 'Akademische Berufe', 'Technicians and Associate Professionals': 'Techniker',
+        'Clerical Support Workers': 'Bürokräfte', 'Service and Sales Workers': 'Dienstleistung & Verkauf',
+        'Skilled Agricultural, Forestry and Fishery Workers': 'Landwirtschaft',
+        'Craft and Related Trades Workers': 'Handwerk',
+        'Plant and Machine Operators and Assemblers': 'Maschinenbediener',
+        'Elementary Occupations': 'Hilfsarbeitskräfte'
+    }
 };
 
 function t(key) { return I18N[LANG][key] || I18N.en[key] || key; }
@@ -429,9 +441,10 @@ function greenRedCSS(t) {
 function getNorm(occ) {
     if (MODE === 'exposure') return occ.exposure / 10;
     if (MODE === 'pay') {
-        // Log scale similar to Karpathy
-        const lo = Math.log(4000), hi = Math.log(11000);
-        return Math.max(0, Math.min(1, (Math.log(Math.max(occ.pay || 4000, 4000)) - lo) / (hi - lo)));
+        // Linear scale across actual Swiss wage range, REVERSED (low=1/red, high=0/green)
+        const lo = 4000, hi = 11000;
+        const t = Math.max(0, Math.min(1, ((occ.pay || lo) - lo) / (hi - lo)));
+        return 1 - t; // reverse: high pay = green, low pay = red
     }
     return (occ.education_level - 1) / 4;
 }
@@ -557,7 +570,7 @@ function render() {
         ctx.strokeRect(cr.x + 1, cr.y + 1, cr.w - 2, cr.h - 2);
 
         // Category label
-        const catLabel = LANG === 'de' ? (MAJOR_GROUPS_DE[cr.category] || cr.category) : cr.category;
+        const catLabel = (CAT_SHORT[LANG] || CAT_SHORT.en)[cr.category] || cr.category;
         ctx.save();
         ctx.beginPath();
         ctx.rect(cr.x + catPad, cr.y + catPad, cr.w - catPad*2, catLabelH);
@@ -634,7 +647,7 @@ function renderLegend() {
     const lo = document.getElementById('legend-low');
     const hi = document.getElementById('legend-high');
     if (MODE === 'exposure') { lo.textContent = t('legend_exp_lo'); hi.textContent = t('legend_exp_hi'); }
-    else if (MODE === 'pay') { lo.textContent = t('legend_pay_lo'); hi.textContent = t('legend_pay_hi'); }
+    else if (MODE === 'pay') { lo.textContent = t('legend_pay_hi'); hi.textContent = t('legend_pay_lo'); }
     else { lo.textContent = t('legend_edu_lo'); hi.textContent = t('legend_edu_hi'); }
 }
 
@@ -693,12 +706,12 @@ function updateStats() {
         const ranges = ['<5k','5-6k','6-7k','7-8k','8-9k','9-10k','>10k'];
         const lims = [5000,6000,7000,8000,9000,10000,Infinity];
         buildHist(7, i => i, d => { for(let i=0;i<lims.length;i++) if((d.pay||0)<lims[i]) return i; return 6; },
-            i => ranges[i], t('hist_pay'));
+            i => ranges[i], t('hist_pay'), true);
         buildTiers([
-            {label:t('tier_pay_1'), min:0, max:4999, color: greenRedCSS(0.1)},
-            {label:t('tier_pay_2'), min:5000, max:7000, color: greenRedCSS(0.35)},
-            {label:t('tier_pay_3'), min:7000, max:9000, color: greenRedCSS(0.6)},
-            {label:t('tier_pay_4'), min:9000, max:99999, color: greenRedCSS(0.9)}
+            {label:t('tier_pay_1'), min:0, max:4999, color: greenRedCSS(0.9)},
+            {label:t('tier_pay_2'), min:5000, max:7000, color: greenRedCSS(0.6)},
+            {label:t('tier_pay_3'), min:7000, max:9000, color: greenRedCSS(0.35)},
+            {label:t('tier_pay_4'), min:9000, max:99999, color: greenRedCSS(0.1)}
         ], d => d.pay||0, total, t('tier_pay'));
     } else {
         const w = DATA.reduce((s,d) => s+d.education_level*d.jobs, 0)/total;
@@ -716,13 +729,14 @@ function updateStats() {
     }
 }
 
-function buildHist(n, _idx, valueFn, labelFn, title) {
+function buildHist(n, _idx, valueFn, labelFn, title, reverseColor) {
     const buckets = Array(n).fill(0);
     DATA.forEach(d => { const i = valueFn(d); if (i >= 0 && i < n) buckets[i] += d.jobs; });
     const mx = Math.max(...buckets, 1);
     document.getElementById('histogram').innerHTML = buckets.map((c, i) => {
         const pct = c/mx*100;
-        const color = greenRedCSS(i/(n-1));
+        const ct = reverseColor ? 1 - i/(n-1) : i/(n-1);
+        const color = greenRedCSS(ct);
         return `<div class="bar" style="height:${Math.max(2,pct)}%;background:${color}"><span class="bar-label">${labelFn(i)}</span></div>`;
     }).join('');
     document.getElementById('hist-title').textContent = title;

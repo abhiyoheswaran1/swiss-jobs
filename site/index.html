@@ -544,46 +544,44 @@ function render() {
 
     squarify(catItems, 0, 0, cw, ch);
 
-    // Layout children inside each category with padding for visual grouping
-    const catPad = 3;        // padding inside category rect
-    const catLabelH = 16;    // space reserved for category header label
+    // Layout children inside each category with adaptive padding
+    const catPad = 2;
+    const catLabelH = 14;
     RECTS = [];
-    const CAT_RECTS = [];    // store category rects for drawing labels
+    const CAT_RECTS = [];
     for (const cat of catItems) {
         if (!cat.rect) continue;
         const {x,y,w,h} = cat.rect;
-        // Inset for category padding + label
-        const ix = x + catPad, iy = y + catPad + catLabelH;
-        const iw = w - catPad*2, ih = h - catPad*2 - catLabelH;
-        if (iw < 4 || ih < 4) continue;
-        CAT_RECTS.push({category: cat.category, x, y, w, h});
+        // Only add label space if category is large enough
+        const showLabel = w > 80 && h > 50;
+        const pad = showLabel ? catPad : 1;
+        const labelH = showLabel ? catLabelH : 0;
+        const ix = x + pad, iy = y + pad + labelH;
+        const iw = w - pad*2, ih = h - pad*2 - labelH;
+        if (iw < 2 || ih < 2) continue;
+        CAT_RECTS.push({category: cat.category, x, y, w, h, showLabel});
         const sub = cat.items.map(d => ({...d, area: d.jobs/catJobs[cat.category]*iw*ih}));
         squarify(sub, ix, iy, iw, ih);
         for (const s of sub) if (s.rect) RECTS.push(s);
     }
 
-    // Draw category backgrounds & labels
+    // Draw category labels (only for large enough groups)
     for (const cr of CAT_RECTS) {
-        // Subtle border around category group
-        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-        ctx.lineWidth = 1;
-        ctx.strokeRect(cr.x + 1, cr.y + 1, cr.w - 2, cr.h - 2);
-
-        // Category label
+        if (!cr.showLabel) continue;
         const catLabel = (CAT_SHORT[LANG] || CAT_SHORT.en)[cr.category] || cr.category;
         ctx.save();
         ctx.beginPath();
         ctx.rect(cr.x + catPad, cr.y + catPad, cr.w - catPad*2, catLabelH);
         ctx.clip();
-        ctx.font = '600 11px -apple-system, system-ui, sans-serif';
-        ctx.fillStyle = 'rgba(255,255,255,0.45)';
+        ctx.font = '600 10px -apple-system, system-ui, sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
         ctx.textBaseline = 'top';
-        ctx.fillText(catLabel.toUpperCase(), cr.x + catPad + 4, cr.y + catPad + 2);
+        ctx.fillText(catLabel.toUpperCase(), cr.x + catPad + 3, cr.y + catPad + 1);
         ctx.restore();
     }
 
     // Draw tiles
-    const gap = 1.5;
+    const gap = 1;
     for (const item of RECTS) {
         const {x,y,w,h} = item.rect;
         const isH = HOVERED && HOVERED.slug === item.slug;
